@@ -7,20 +7,19 @@ using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
 using ProtoTest.Golem.WebDriver.Elements;
+using ProtoTest.Golem.WebDriver.Elements.Types;
 
 namespace Golem.PageObjects.HPNN
 {
-    public class HomePage : BasePageObject
+    public class SettingsModal_Tiles : BasePageObject
     {
-        public static HomePage OpenHomePage()
-        {
-            WebDriverTestBase.driver.Navigate().GoToUrl(Config.GetConfigValue("EnvUrl", "http://katie-dev.lab.hpnewsnow.com/"));
-            return new HomePage();
-        }
+        SettingsModal_Sidebar sidebar = new SettingsModal_Sidebar();
+
+        Element PageHeading_Label = new Element("News Feeds Heading Label", By.LinkText("Activate Tiles"));
 
         public override void WaitForElements()
         {
-            // Implement me
+            PageHeading_Label.Verify().Visible();
         }
     }
 }

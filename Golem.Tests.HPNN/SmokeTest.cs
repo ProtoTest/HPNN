@@ -17,7 +17,7 @@ namespace Golem.Tests.HPNN
         [Test, Category("Smoke Test")]
         public void Some_Test()
         {
-            
+            DashboardPage.OpenDashboardPage().EnterSettings().Enter_Tiles();
         }
 
         [Test, Category("Smoke Test")]
