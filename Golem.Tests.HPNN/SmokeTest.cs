@@ -23,7 +23,7 @@ namespace Golem.Tests.HPNN
         [Test, Category("Smoke Test")]
         public void Another_Test()
         {
-
+            DashboardPage.OpenDashboardPage().VerifyDefaultTilesDisplayed();
         }
     }
 }
