@@ -15,17 +15,17 @@ namespace Golem.Tests.HPNN
     [TestFixture]
     public class SmokeTest : WebDriverTestBase
     {
-        //[Test, Category("Smoke Test")]
-        //public void Some_Test()
-        //{
-        //    DashboardPage.OpenDashboardPage().EnterSettings().Enter_Tiles();
-        //}
+        [Test, Category("Smoke Test")]
+        public void Some_Test()
+        {
+            DashboardPage.OpenDashboardPage().EnterSettings().Enter_Tiles();
+        }
 
-        //[Test, Category("Smoke Test")]
-        //public void Another_Test()
-        //{
-        //    DashboardPage.OpenDashboardPage().VerifyDefaultTilesDisplayed();
-        //}
+        [Test, Category("Smoke Test")]
+        public void Another_Test()
+        {
+            DashboardPage.OpenDashboardPage().VerifyDefaultTilesDisplayed();
+        }
         [Test, Category("Re-arrange tiles functionality")]
         public void Re_arrange_tiles()
         {
