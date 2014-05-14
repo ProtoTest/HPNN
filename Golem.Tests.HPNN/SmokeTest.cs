@@ -30,34 +30,42 @@ namespace Golem.Tests.HPNN
         public void Re_arrange_tiles()
         {
 
+//- Verifying list of default tiles when not logged in
 // - Verify 'Re-arrange tiles functionality': Verify initially no x's to remove tiles, enter Tile Settings screen. 
 //Rearrange Tiles. Remove them, move them, verify banner is displayed 'Drag and Drop to Rearrange Tiles' with Done button. 
 //Click done, verify X's are gone.
-//- Adding/removing tiles with specific grid size, verify displayed as expected
-//- Verifying tile grid sizes (1x1, 2x2) when adding, per the HPNN+ Scope of work
-//- Verifying expected available grid sizes
-//- Verifying list of default tiles when not logged in
-//- Verify content exists in the 'Marque' carousel, verify arrows scroll.
-
-
             DashboardPage.OpenDashboardPage();
             DashboardPage dashboard = new DashboardPage();
-            List<String> defaultTiles = dashboard.ObtainDefaultTiles();
-            foreach (String defaultTile in defaultTiles) {
-                dashboard.verifyDefaultTilesWithoutRemoveOption(defaultTile);
-            }
-            
+            List<String> defaultTiles = dashboard.ObtainTilesNamesOnPage();
+            dashboard.VerifyTilePresent(defaultTiles[2]);
             dashboard.EnterSettings().RearrangeTiles();
-            foreach (String tileTitle in defaultTiles)
-            {
-                dashboard.verifyTileWithRemoveOption(tileTitle);
-            }
-            dashboard.verifyBannerAndDoneButton(true);
-            foreach (String defaultTile in defaultTiles)
-            {
-                dashboard.verifyDefaultTilesWithoutRemoveOption(defaultTile);
-            }
+            dashboard.VerifyTilePresent(defaultTiles[2],true);
+            dashboard.RemoveTile(defaultTiles[2]);
+            dashboard.VerifyReArrangeTilesBanner();
+        }
+        [Test, Category("Add tiles with specific grid size")]
+        public void Add_tiles()
+        {
+            DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard = new DashboardPage();
+            //dashboard.EnterSettings().Enter_Tiles().InactiveTiles();
+            //- Verifying tile grid sizes (1x1, 2x2) when adding, per the HPNN+ Scope of work
+            //- Verifying expected available grid sizes
+
         }
 
+        [Test, Category("Remove tiles with specific grid size")]
+        public void Remove_tiles()
+        {
+            //removing tiles with specific grid size
+        }
+        [Test, Category("Verify Marquee Content")]
+        public void Verify_Marquee()
+        {
+            //- Verify content exists in the 'Marque' carousel, verify arrows scroll.
+            DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard = new DashboardPage();
+            dashboard.VerifyMarquee();
+        }
     }
 }
