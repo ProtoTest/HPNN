@@ -32,6 +32,11 @@ namespace Golem.PageObjects.HPNN
             sidebar.Tiles_Link.Click();
             return new SettingsModal_Tiles();
         }
+        public DashboardPage RearrangeTiles()
+        {
+            sidebar.RearrangeTiles_Button.Click();
+            return new DashboardPage();
+        }
 
         public override void WaitForElements()
         {

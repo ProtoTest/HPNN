@@ -8,6 +8,7 @@ using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
 using ProtoTest.Golem.WebDriver.Elements;
 using ProtoTest.Golem.WebDriver.Elements.Types;
+using System.Collections.ObjectModel;
 
 namespace Golem.PageObjects.HPNN
 {
@@ -57,5 +58,64 @@ namespace Golem.PageObjects.HPNN
             header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
         }
+
+        public List<String> ObtainTilesNamesOnPage()
+        {
+            List<String> defalultTiles = new List<String>();
+            Element container = new Element("tiles container",By.Id("container"));
+
+            var tilesInContainer = container.FindElements(By.XPath("//div[@gridster-item='tile']/div/div/div/h2"));
+            foreach (var tile in tilesInContainer) {
+                defalultTiles.Add(tile.Text);
+            }
+                return defalultTiles;
+        }
+
+        public DashboardPage VerifyTilePresent(string tileName, Boolean verifyRemoveIconPresent = false)
+        {
+            string xpath = String.Format("//div[ (./div[contains(@class,'tile-presentation-controller')]/div/h2[text()='{0}']) and (//a[@class='remove-btn'])]", tileName);
+                Element tile = new Element("Tile Ready To Remove", By.XPath(xpath));
+                var removeButton = tile.FindInChildren(By.TagName("a"));
+                tile.Verify().Visible();
+                if (!verifyRemoveIconPresent)
+                {
+                    removeButton.Verify().Not().Visible();
+                }
+                else { removeButton.Verify().Visible(); }
+            return new DashboardPage();
+        }
+
+        public DashboardPage RemoveTile(string tileTitle)
+        {
+            string xpath = String.Format("//div[ (./div[contains(@class,'tile-presentation-controller')]/div/h2[text()='{0}']) and (//a[@class='remove-btn'])]", tileTitle);
+            if (!tileTitle.Equals("Your Personal News") || !tileTitle.Equals("Marquee"))
+            {
+                Element tile = new Element("Tile Ready To Remove", By.XPath(xpath));
+                var removeButton = tile.FindInChildren(By.TagName("a"));
+                removeButton.Click();
+                tile.Verify().Not().Visible();
+            }
+            else {
+                throw new ArgumentException("No such name of Tile \nVerify the name of Tile To Remove");
+            }
+            return new DashboardPage();
+        }
+
+        public DashboardPage VerifyReArrangeTilesBanner()
+        {
+            //if selectOption is true, click on done button, if not, click on close button
+            ReArrangeTilesBanner reArrange = new ReArrangeTilesBanner();
+            reArrange.ClickOnDoneButton(true);
+            return new DashboardPage();
+        }
+
+        public void VerifyMarquee()
+        {
+            Marquee marquee = new Marquee();
+            marquee.ClickOnSliderAndCompareThumbs(true);
+        }
     }
 }
+
+
+

@@ -21,5 +21,12 @@ namespace Golem.PageObjects.HPNN
         {
             PageHeading_Label.Verify().Visible();
         }
+        public void InactiveTiles() { 
+            Element tilesToActivate = new Element(By.XPath("//div[@id='settings-tiles-tab-1']/div[1]/div/div"));
+            List<Element> t = new List<Element>();
+            foreach (Element a in tilesToActivate.FindElements(By.TagName("ng-repeat"))) {
+                t.Add(a);
+            }
+        }
     }
 }
