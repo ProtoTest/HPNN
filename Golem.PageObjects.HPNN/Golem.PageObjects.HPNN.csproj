@@ -54,7 +54,9 @@
   <ItemGroup>
     <Compile Include="DashboardPage.cs" />
     <Compile Include="Header.cs" />
+    <Compile Include="Marquee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReArrangeTilesBanner.cs" />
     <Compile Include="SettingsModal.cs" />
     <Compile Include="SettingsModal_NewsFeeds.cs" />
     <Compile Include="SettingsModal_Sidebar.cs" />
