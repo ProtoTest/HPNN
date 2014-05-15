@@ -21,6 +21,8 @@ namespace Golem.PageObjects.HPNN
         public Button RearrangeTiles_Button = new Button("Re-arrange tiles Button", By.Id("reorder"));
         public Button Cancel_Button = new Button("Cancel Button", ByE.Text("Cancel"));
 
+
+
         public override void WaitForElements()
         {
             YourInformation_Link.Verify().Visible();
@@ -29,5 +31,14 @@ namespace Golem.PageObjects.HPNN
             RearrangeTiles_Button.Verify().Visible();
             Cancel_Button.Verify().Visible();
         }
+
+        public EditDashboardPage RearrangeTiles()
+        {
+            RearrangeTiles_Button.Click();
+            return new EditDashboardPage();
+        }
+
     }
+
+
 }

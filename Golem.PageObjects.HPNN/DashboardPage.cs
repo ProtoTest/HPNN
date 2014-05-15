@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MbUnit.Framework;
+using OpenQA.Selenium.Interactions;
 using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
@@ -14,12 +17,30 @@ namespace Golem.PageObjects.HPNN
     public class DashboardPage : BasePageObject
     {
        // When default tiles are established, add 'em here
-        string[] default_tile_title_list = { "Quick links", "In The News", "Your Personal News" };
+        protected string[] default_tile_title_list = { "Quick links", "In The News", "Your Personal News" };
 
-        Header header = new Header();
+        public Header header = new Header();
 
+        public Element TileContainer = new Element("TileContainer", By.Id("container"));
+        public Element TitleSlideImage = new Element("Title slide image", By.ClassName("tile-slide-image"));
         // Just some random tile to verify the tile page content is loaded
-        Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
+        public Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
+        public Element RemoveTileButton = new Element("RemoveTileButton", By.XPath("//div[@gridster-item='tile']//a[@class='remove-btn']"));
+
+        public Element TileWithTitle(string title)
+        {
+            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]"));
+        }
+
+        public Element RemoveButtonForTile(string title)
+        {
+            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]//a[@class='remove-btn']"));
+        }
+
+        public IReadOnlyCollection<IWebElement> AllTilesOnPage()
+        {
+            return driver.FindElements(By.XPath("//div[@gridster-item='tile']"));
+        }
 
         public static DashboardPage OpenDashboardPage()
         {
@@ -52,10 +73,33 @@ namespace Golem.PageObjects.HPNN
             return this;
         }
 
+        public DashboardPage VerifyTileNotPresent(string title)
+        {
+            TileWithTitle(title).Verify().Not().Visible();
+            return this;
+        }
+
         public override void WaitForElements()
         {
             header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
+            RemoveTileButton.Verify().Not().Visible();
         }
+
+        public List<String> GetAllTileTitles()
+         {
+             List<String> allTileTitles = new List<String>();
+             var tilesInContainer = TileContainer.FindElements(By.XPath("//div[@gridster-item='tile']//h2[@class='tile-title']"));
+             foreach (var tile in tilesInContainer) {
+                 allTileTitles.Add(tile.Text);
+             }
+             return allTileTitles;
+         }
+
+        public Point GetTilePosition(string title)
+        {
+            return TileWithTitle(title).Location;
+        }
+
     }
 }

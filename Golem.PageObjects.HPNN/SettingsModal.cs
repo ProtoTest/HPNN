@@ -14,7 +14,9 @@ namespace Golem.PageObjects.HPNN
     
     public class SettingsModal : BasePageObject
     {
-        SettingsModal_Sidebar sidebar = new SettingsModal_Sidebar();
+        public SettingsModal_Sidebar sidebar = new SettingsModal_Sidebar();
+
+
 
         public SettingsModal_YourInformation Enter_YourInformation()
         {
