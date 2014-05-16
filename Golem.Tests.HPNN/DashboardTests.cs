@@ -14,7 +14,8 @@ namespace Golem.Tests.HPNN
         [Test]
         public void Verify_DefaultTiles()
         {
-            DashboardPage.OpenDashboardPage().VerifyDefaultTilesDisplayed();
+            DashboardPage.OpenDashboardPage()
+                .VerifyDefaultTilesDisplayed();
         }
 
         [Test]
@@ -31,22 +32,26 @@ namespace Golem.Tests.HPNN
         public void Rearrange_Tile()
         {
             DashboardPage.OpenDashboardPage()
-                         .EnterSettings()
-                         .sidebar.RearrangeTiles()
-                         .DragTileToFirstPosition("Quick links").
-                        ClickDone().
-                        VerifyTilePosition("Quick links", 0);
+                .EnterSettings()
+                .sidebar.RearrangeTiles()
+                .DragTileToFirstPosition("Quick links")
+                .ClickDone()
+                .VerifyTilePosition("Quick links", 0);
 
         }
 
+        /// <summary>
+        /// This test is currently failing due to a site issue
+        /// </summary>
         [Test]
         public void Cancel_Rearrange_Tile()
         {
             DashboardPage.OpenDashboardPage().VerifyTilePosition("Quick links", 7)
                 .EnterSettings()
                 .sidebar.RearrangeTiles()
-                .DragTileToFirstPosition("Quick links").
-                ClickCancel().VerifyTilePosition("Quick links",7);
+                .DragTileToFirstPosition("Quick links")
+                .ClickCancel()
+                .VerifyTilePosition("Quick links",7);
 
 
         }
@@ -56,10 +61,21 @@ namespace Golem.Tests.HPNN
         {
             DashboardPage.OpenDashboardPage()
                 .EnterSettings()
-                .Enter_Tiles().
-                AddTileWithType("Tasks", "1x2").
-                ClickDone().
-                VerifyTileSize("Tasks",1,2);
+                .Enter_Tiles()
+                .AddTileWithType("Tasks", "1x2")
+                .ClickDone()
+                .VerifyTileSize("Tasks",1,2);
+        }
+
+        [Test]
+        public void Cancel_Add_Tiles()
+        {
+            DashboardPage.OpenDashboardPage()
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Trending", "2x2")
+                .ClickCancel()
+                .VerifyTileNotPresent("Trending");
         }
        
     }

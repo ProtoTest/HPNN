@@ -17,12 +17,12 @@ namespace Golem.PageObjects.HPNN
     public class DashboardPage : BasePageObject
     {
        // When default tiles are established, add 'em here
-        protected string[] default_tile_title_list = { "Quick links", "In The News", "Your Personal News" };
+        protected string[] default_tile_title_list = { "Quick links", "In The News", "Your Personal News","SFDC Past Due","Upcoming Events","Most Discussed","Most Shared","Trending","My Sales Guide","Product Show..", "Most Read","Most Liked" };
 
         public Header header = new Header();
 
         public Element TileContainer = new Element("TileContainer", By.Id("container"));
-        public Element MarqueeTile = new Element("Marquee tile", By.Id("marquee"));
+        public Element MarqueeTile = new Element("Marquee tile", By.ClassName("tile-slide-image"));
         // Just some random tile to verify the tile page content is loaded
         public Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
         public Element RemoveTileButton = new Element("RemoveTileButton", By.XPath("//div[@gridster-item='tile']//a[@class='remove-btn']"));
@@ -103,9 +103,9 @@ namespace Golem.PageObjects.HPNN
             {
                 allElements.Add(new Element(tile));
             }
-           var orderedList = allElements.OrderBy(p => p.Location.Y).ThenBy(p => p.Location.X);
+            var orderedList = allElements.OrderBy(element => element.Location.Y).ThenBy(element => element.Location.X);
            
-            Assert.AreEqual(title,orderedList.ElementAt(index).Text, "The tile title did not match");
+            Assert.AreEqual(title,orderedList.ElementAt(index).Text, "The tile was not in the expected position of " + index);
             return this;
         }
 
