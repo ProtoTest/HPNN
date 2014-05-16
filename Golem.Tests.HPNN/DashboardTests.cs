@@ -30,28 +30,24 @@ namespace Golem.Tests.HPNN
         [Test]
         public void Rearrange_Tile()
         {
-            var dashboard = DashboardPage.OpenDashboardPage()
-                .EnterSettings()
-                .sidebar.RearrangeTiles()
-                .DragTileToFirstPosition("Quick links")
-                .rearrangeBanner.ClickDone();
+            DashboardPage.OpenDashboardPage()
+                         .EnterSettings()
+                         .sidebar.RearrangeTiles()
+                         .DragTileToFirstPosition("Quick links").
+                        rearrangeBanner.ClickDone().
+                        VerifyTilePosition("Quick links", 1);
         }
 
         [Test]
         public void Cancel_Rearrange_Tile()
         {
-            var dashboard = DashboardPage.OpenDashboardPage().GetTilePosition("Quick links");
-                .EnterSettings()
-                .sidebar.RearrangeTiles()
-                .DragTileToFirstPosition("Quick links");
+            DashboardPage.OpenDashboardPage()
+                         .EnterSettings()
+                         .sidebar.RearrangeTiles()
+                         .DragTileToFirstPosition("Quick links").
+rearrangeBanner.ClickCancel();
             
-            var position = dashboard.GetTilePosition("Quick links");
-            dashboard.rearrangeBanner.ClickCancel();
-            var newPosition = dashboard
-                .EnterSettings()
-                .sidebar.RearrangeTiles().GetTilePosition("Quick links");
-
-            Assert.AreEqual(position, newPosition,"The tile has moved position, even though cancel was clicked");
+           
         }
        
     }

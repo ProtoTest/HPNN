@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MbUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using ProtoTest.Golem.WebDriver;
 
 namespace Golem.PageObjects.HPNN
 {
@@ -19,6 +22,8 @@ namespace Golem.PageObjects.HPNN
             return this;
         }
 
+
+
         public EditDashboardPage RemoveTile(string title)
         {
             RemoveButtonForTile(title).Click();
@@ -31,5 +36,7 @@ namespace Golem.PageObjects.HPNN
             PersonalNewsTile.Verify().Visible();
             RemoveTileButton.GetVisibleElement().Verify().Visible();
         }
+
+
     }
 }

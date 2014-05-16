@@ -4,15 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Golem.Tests.HPNN", "Golem.Tests.HPNN\Golem.Tests.HPNN.csproj", "{241B4E58-4CA3-4EBB-B915-52C20AB5F4E0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{996F61C5-7F02-46D6-AC7B-60DBAD04128C} = {996F61C5-7F02-46D6-AC7B-60DBAD04128C}
-		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266} = {DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Golem.PageObjects.HPNN", "Golem.PageObjects.HPNN\Golem.PageObjects.HPNN.csproj", "{996F61C5-7F02-46D6-AC7B-60DBAD04128C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266} = {DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoTest.Golem", "..\ProtoTest.Golem\ProtoTest.Golem\ProtoTest.Golem.csproj", "{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F70A6B39-11AF-4A9E-BCD4-8C5D60C9C420}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,10 +29,6 @@ Global
 		{996F61C5-7F02-46D6-AC7B-60DBAD04128C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{996F61C5-7F02-46D6-AC7B-60DBAD04128C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{996F61C5-7F02-46D6-AC7B-60DBAD04128C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

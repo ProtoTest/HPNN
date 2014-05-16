@@ -96,6 +96,21 @@ namespace Golem.PageObjects.HPNN
              return allTileTitles;
          }
 
+        public DashboardPage VerifyTilePosition(string title, int index)
+        {
+
+            var allTiles = TileContainer.FindElements(By.XPath("//div[@gridster-item='tile']//h2[@class='tile-title']"));
+            var allElements = new List<Element>();
+            foreach (var tile in allTiles)
+            {
+                allElements.Add(new Element(tile));
+            }
+           var orderedList = allElements.OrderBy(p => p.Location.X).ThenBy(p => p.Location.Y);
+           
+            Assert.AreEqual(title,orderedList.ElementAt(index).Text, "The tile title did not match");
+            return this;
+        }
+
         public Point GetTilePosition(string title)
         {
             return TileWithTitle(title).Location;
