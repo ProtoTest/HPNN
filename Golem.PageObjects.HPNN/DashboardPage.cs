@@ -22,14 +22,14 @@ namespace Golem.PageObjects.HPNN
         public Header header = new Header();
 
         public Element TileContainer = new Element("TileContainer", By.Id("container"));
-        public Element TitleSlideImage = new Element("Title slide image", By.ClassName("tile-slide-image"));
+        public Element MarqueeTile = new Element("Marquee tile", By.Id("marquee"));
         // Just some random tile to verify the tile page content is loaded
         public Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
         public Element RemoveTileButton = new Element("RemoveTileButton", By.XPath("//div[@gridster-item='tile']//a[@class='remove-btn']"));
 
         public Element TileWithTitle(string title)
         {
-            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]"));
+            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]/div"));
         }
 
         public Element RemoveButtonForTile(string title)
@@ -53,18 +53,15 @@ namespace Golem.PageObjects.HPNN
             return header.EnterSettings();
         }
 
-        private void VerifyTilewithTitleDisplayed(string tile_title)
+        private DashboardPage VerifyTilewithTitleDisplayed(string tile_title)
         {
-            string xpath = String.Format("//div[contains(@class,'tile-presentation-controller')]/div/h2[text()='{0}']", tile_title);
-
-            Element tile = new Element("Tile Title", By.XPath(xpath));
-            tile.Verify().Visible();
+            TileWithTitle(tile_title).Verify().Visible();
+            return this;
         }
 
         public DashboardPage VerifyDefaultTilesDisplayed()
         {
-            // marquee tile does not have a title, manually verify
-            new Element("Marquee tile", By.Id("marquee")).Verify().Visible();
+            MarqueeTile.Verify().Visible();
 
             foreach(string tile_title in default_tile_title_list)
             {
@@ -78,6 +75,7 @@ namespace Golem.PageObjects.HPNN
             TileWithTitle(title).Verify().Not().Visible();
             return this;
         }
+
 
         public override void WaitForElements()
         {
@@ -105,7 +103,7 @@ namespace Golem.PageObjects.HPNN
             {
                 allElements.Add(new Element(tile));
             }
-           var orderedList = allElements.OrderBy(p => p.Location.X).ThenBy(p => p.Location.Y);
+           var orderedList = allElements.OrderBy(p => p.Location.Y).ThenBy(p => p.Location.X);
            
             Assert.AreEqual(title,orderedList.ElementAt(index).Text, "The tile title did not match");
             return this;
@@ -116,5 +114,10 @@ namespace Golem.PageObjects.HPNN
             return TileWithTitle(title).Location;
         }
 
+        public DashboardPage VerifyTileSize(string title, int width, int height)
+        {
+            Assert.Contains(TileWithTitle(title).GetAttribute("class"),string.Format("is-w{0} is-h{1}", width, height));
+            return this;
+        }
     }
 }

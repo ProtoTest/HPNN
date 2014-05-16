@@ -17,9 +17,27 @@ namespace Golem.PageObjects.HPNN
 
         Element PageHeading_Label = new Element("News Feeds Heading Label", By.LinkText("Activate Tiles"));
 
+        public Element ButtonForTileType(string name)
+        {
+            return new Element(By.XPath("//div[contains(@id,'"+name+"')]"));
+        }
+
+        public Element ButtonForSize(string size)
+        {
+            return new Element(By.XPath("//li[contains(@class,'"+size+"')]"));
+        }
+
+        public EditDashboardPage AddTileWithType(string type, string size)
+        {
+            ButtonForTileType(type).WaitUntil().Visible().Click();
+            ButtonForSize(size).WaitUntil().Visible().Click();
+            return new EditDashboardPage();
+        }
+
         public override void WaitForElements()
         {
             PageHeading_Label.Verify().Visible();
         }
+
     }
 }

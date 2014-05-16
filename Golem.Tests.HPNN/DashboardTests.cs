@@ -12,15 +12,15 @@ namespace Golem.Tests.HPNN
     class DashboardTests : WebDriverTestBase
     {
         [Test]
-        public void Verify_No_Remove_Button()
+        public void Verify_DefaultTiles()
         {
-            DashboardPage.OpenDashboardPage();
+            DashboardPage.OpenDashboardPage().VerifyDefaultTilesDisplayed();
         }
 
         [Test]
         public void Remove_Tile()
         {
-            DashboardPage.OpenDashboardPage()
+            DashboardPage.OpenDashboardPage().VerifyTilePosition("Quick links", 7)
                 .EnterSettings()
                 .sidebar.RearrangeTiles()
                 .RemoveTile("Quick links")
@@ -34,20 +34,32 @@ namespace Golem.Tests.HPNN
                          .EnterSettings()
                          .sidebar.RearrangeTiles()
                          .DragTileToFirstPosition("Quick links").
-                        rearrangeBanner.ClickDone().
-                        VerifyTilePosition("Quick links", 1);
+                        ClickDone().
+                        VerifyTilePosition("Quick links", 0);
+
         }
 
         [Test]
         public void Cancel_Rearrange_Tile()
         {
+            DashboardPage.OpenDashboardPage().VerifyTilePosition("Quick links", 7)
+                .EnterSettings()
+                .sidebar.RearrangeTiles()
+                .DragTileToFirstPosition("Quick links").
+                ClickCancel().VerifyTilePosition("Quick links",7);
+
+
+        }
+
+        [Test]
+        public void Add_Tiles()
+        {
             DashboardPage.OpenDashboardPage()
-                         .EnterSettings()
-                         .sidebar.RearrangeTiles()
-                         .DragTileToFirstPosition("Quick links").
-rearrangeBanner.ClickCancel();
-            
-           
+                .EnterSettings()
+                .Enter_Tiles().
+                AddTileWithType("Tasks", "1x2").
+                ClickDone().
+                VerifyTileSize("Tasks",1,2);
         }
        
     }
