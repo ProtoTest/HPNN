@@ -24,7 +24,9 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage ClickDone()
         {
-            return rearrangeBanner.ClickDone();
+            rearrangeBanner.ClickDone();
+            ProtoTest.Golem.Core.Common.Delay(3000);
+            return new DashboardPage();
         }
 
         public DashboardPage ClickCancel()

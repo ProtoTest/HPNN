@@ -45,6 +45,9 @@ namespace Golem.PageObjects.HPNN
         public static DashboardPage OpenDashboardPage()
         {
             WebDriverTestBase.driver.Navigate().GoToUrl(Config.GetConfigValue("EnvUrl", "http://katie-dev.lab.hpnewsnow.com/"));
+            Common.Delay(5000);
+            WebDriverTestBase.driver.Navigate().Refresh();
+
             return new DashboardPage();
         }
 
@@ -80,7 +83,7 @@ namespace Golem.PageObjects.HPNN
         public override void WaitForElements()
         {
             header.WaitForElements();
-            PersonalNewsTile.Verify().Visible();
+            PersonalNewsTile.Verify(60).Visible();
             RemoveTileButton.Verify().Not().Visible();
         }
 
