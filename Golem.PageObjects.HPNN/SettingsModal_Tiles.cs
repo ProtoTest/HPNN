@@ -34,6 +34,16 @@ namespace Golem.PageObjects.HPNN
             return new EditDashboardPage();
         }
 
+        public EditDashboardPage AddWeatherTile(string size, string location)
+        {
+            ButtonForTileType("Weather").WaitUntil().Visible().Click();
+            ButtonForSize(size).WaitUntil().Visible().Click();
+            PersonalizeWeatherPage personalize_weather = new PersonalizeWeatherPage();
+            personalize_weather.EnterLocation(location).ClickAddMyTile();
+
+            return new EditDashboardPage();
+        }
+
         public override void WaitForElements()
         {
             PageHeading_Label.Verify().Visible();
