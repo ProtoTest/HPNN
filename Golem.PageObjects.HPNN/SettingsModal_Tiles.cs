@@ -44,6 +44,17 @@ namespace Golem.PageObjects.HPNN
             return new EditDashboardPage();
         }
 
+        public EditDashboardPage AddStockQuoteTile(string size, string symbol)
+        {
+            ButtonForTileType("Stock Quote").WaitUntil().Visible().Click();
+            ButtonForSize(size).WaitUntil().Visible().Click();
+            Element symbolField = new Element(By.XPath("//input[contains(@title,'Stock Quote')]"));
+            Element doneButton = new Element(By.LinkText("I'm Done. Add My Tile"));
+            symbolField.SendKeys(symbol);
+            doneButton.Click();
+            return new EditDashboardPage();
+        }
+
         public override void WaitForElements()
         {
             PageHeading_Label.Verify().Visible();

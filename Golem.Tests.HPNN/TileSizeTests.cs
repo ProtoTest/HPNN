@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.DynamicProxy.Generators;
 using Golem.PageObjects.HPNN;
 using MbUnit.Framework;
 using ProtoTest.Golem.WebDriver;
@@ -11,51 +12,94 @@ namespace Golem.Tests.HPNN
 {
     public class TileSizeTests : WebDriverTestBase
     {
-        // Weather Tiles: 1x1, 2x1, 1x2
-        string weather_tile_title = "Local Weather";
-        string weather_tile_title_short = "Weather";
-        string weather_location = "Denver";
 
         [Test]
-        public void Verify_Weather_Tile_1x1()
+        [Row(1,1)]
+        [Row(1,2)]
+        [Row(2,1)]
+        public void Verify_Weather_Tile(int x, int y)
         {
-            DashboardPage.OpenDashboardPage()
-                .EnterSettings()
-                .Enter_Tiles()
-                .AddWeatherTile("1x1", weather_location)
-                .ClickDone()
-                .VerifyTileSize(weather_tile_title, 1, 1)
-                .EnterSettings().sidebar.RearrangeTiles()
-                .RemoveTile(weather_tile_title)
-                .ClickDone().VerifyTileNotPresent(weather_tile_title);
-        }
-
-        [Test]
-        public void Verify_Weather_Tile_2x1()
-        {
+            string weather_tile_title = "Local Weather";
+            string weather_tile_title_short = "Weather";
+            string weather_location = "Denver";
             DashboardPage.OpenDashboardPage()
                .EnterSettings()
                .Enter_Tiles()
-               .AddWeatherTile("2x1", weather_location)
+               .AddWeatherTile(String.Format("{0}x{1}",x,y), weather_location)
                .ClickDone()
-               .VerifyTileSize(weather_tile_title_short, 2, 1)
+               .VerifyTileSize(weather_tile_title_short, x,y)
                .EnterSettings().sidebar.RearrangeTiles()
                .RemoveTile(weather_tile_title_short)
                .ClickDone().VerifyTileNotPresent(weather_tile_title_short);
         }
 
         [Test]
-        public void Verify_Weather_Tile_1x2()
+        [Row(1, 1)]
+        [Row(2, 1)]
+        [Row(1, 2)]
+        public void Verify_StockQuote_Tile(int x, int y)
         {
             DashboardPage.OpenDashboardPage()
-                .EnterSettings()
-                .Enter_Tiles()
-                .AddWeatherTile("1x2", weather_location)
-                .ClickDone()
-                .VerifyTileSize(weather_tile_title_short, 1, 2)
-                .EnterSettings().sidebar.RearrangeTiles()
-                .RemoveTile(weather_tile_title_short)
-                .ClickDone().VerifyTileNotPresent(weather_tile_title_short);
+               .EnterSettings()
+               .Enter_Tiles()
+               .AddStockQuoteTile("APPL", String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize("Stock Quote", x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile("Stock Quote")
+               .ClickDone().VerifyTileNotPresent("Stock Quote");
         }
+
+
+        [Test]
+        [Row(1, 1)]
+        [Row(1, 2)]
+        public void Verify_MyComp_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPage()
+               .EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType("MyComp",String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize("MyComp", x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile("MyComp")
+               .ClickDone().VerifyTileNotPresent("MyComp");
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(1, 2)]
+        public void Verify_LinkedIn_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPage()
+               .EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType("Meg on LinkedIn", String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize("Meg on LinkedIn", x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile("Meg on LinkedIn")
+               .ClickDone().VerifyTileNotPresent("Meg on LinkedIn");
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(1, 2)]
+        public void Verify_NextMeeting_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPage()
+               .EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType("Next Meeting", String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize("Next Meeting", x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile("Next Meeting")
+               .ClickDone().VerifyTileNotPresent("Next Meeting");
+        }
+
+
+
     }
 }
