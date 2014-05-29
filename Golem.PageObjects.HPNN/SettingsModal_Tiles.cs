@@ -29,6 +29,54 @@ namespace Golem.PageObjects.HPNN
 
         public EditDashboardPage AddTileWithType(string type, string size)
         {
+            // Specific id for 'In The News' tile needs to be customized
+            if(type.Equals("In The News"))
+            {
+                type = "News";
+            }
+            else if(type.Equals("HP Sales Now"))
+            {
+                type = "hp-sales-now";
+            }
+            else if(type.Equals("Jobs @HP"))
+            {
+                type = "jobs-at-hp";
+            }
+            else if (type.Equals("Most Read"))
+            {
+                type = "most-read";
+            }
+            else if (type.Equals("Most Shared"))
+            {
+                type = "most-shared";
+            }
+            else if (type.Equals("Most Discussed"))
+            {
+                type = "most-discussed";
+            }
+            else if (type.Equals("Most Liked"))
+            {
+                type = "most-liked";
+            }
+            else if (type.Contains("Product Show"))
+            {
+                type = "product-showcase";
+            }
+            else if (type.Equals("Upcoming Events"))
+            {
+                type = "Upcoming-events";
+            }
+            else if (type.Equals("Upcoming Sales Events"))
+            {
+                type = "Upcoming Events for Sales";
+            }
+            else if (type.Equals("Innovation @HP"))
+            {
+                type = "hp-innovation-blog";
+            }
+            
+            
+
             ButtonForTileType(type).WaitUntil().Visible().Click();
             ButtonForSize(size).WaitUntil().Visible().Click();
             return new EditDashboardPage();

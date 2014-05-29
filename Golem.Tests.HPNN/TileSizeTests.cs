@@ -50,7 +50,6 @@ namespace Golem.Tests.HPNN
                .ClickDone().VerifyTileNotPresent("Stock Quote");
         }
 
-
         [Test]
         [Row(1, 1)]
         [Row(1, 2)]
@@ -83,21 +82,6 @@ namespace Golem.Tests.HPNN
                .ClickDone().VerifyTileNotPresent("Meg on LinkedIn");
         }
 
-        [Test]
-        [Row(2, 1)]
-        [Row(1, 2)]
-        public void Verify_NextMeeting_Tile(int x, int y)
-        {
-            DashboardPage.OpenDashboardPage()
-               .EnterSettings()
-               .Enter_Tiles()
-               .AddTileWithType("Next Meeting", String.Format("{0}x{1}", x, y))
-               .ClickDone()
-               .VerifyTileSize("Next Meeting", x, y)
-               .EnterSettings().sidebar.RearrangeTiles()
-               .RemoveTile("Next Meeting")
-               .ClickDone().VerifyTileNotPresent("Next Meeting");
-        }
 
         [Test]
         [Row(2, 1)]
@@ -121,9 +105,545 @@ namespace Golem.Tests.HPNN
                .Enter_Tiles()
                .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
                .ClickDone()
-               .VerifyTileSize(tile_under_test, x, y);
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostRead_Tile(int x, int y)
+        {
+            String tile_under_test = "Most Read";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
         }
 
 
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostShared_Tile(int x, int y)
+        {
+            String tile_under_test = "Most Shared";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostDiscussed_Tile(int x, int y)
+        {
+            String tile_under_test = "Most Discussed";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostLiked_Tile(int x, int y)
+        {
+            String tile_under_test = "Most Liked";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+
+        [Test]
+        [Row(2, 2)]
+        public void Verify_Trending_Tile(int x, int y)
+        {
+            String tile_under_test = "Trending";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 1, "Product Show..")]
+        [Row(2, 1, "Product Showcase")]
+        public void Verify_ProductShowcase_Tile(int x, int y, string tile_under_test)
+        {
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            foreach (string s in tile_list)
+            {
+                if (s.Contains("Product Show"))
+                {
+                    dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                    .RemoveTile("Product Show..")
+                    .ClickDone().VerifyTileNotPresent(tile_under_test);
+                    break;
+                }
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType("Product Showcase", String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 2)]
+        [Row(2, 1)]
+        public void Verify_UpComingEvents_Tile(int x, int y)
+        {
+            String tile_under_test = "Upcoming Events";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 2)]
+        [Row(2, 1)]
+        public void Verify_UpComingEventsSales_Tile(int x, int y)
+        {
+            String tile_under_test = "Upcoming Events for Sales";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType("Upcoming Sales Events", String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 1)]
+        public void Verify_DiscussedOnOneHP_Tile(int x, int y)
+        {
+            String tile_under_test = "Discussed on OneHP";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 1)]
+        [Row(2, 1)]
+        [Row(1, 2)]
+        public void Verify_Inbox_Tile(int x, int y)
+        {
+            String tile_under_test = "Inbox";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 1)]
+        [Row(2, 1)]
+        public void Verify_NextMeeting_Tile(int x, int y)
+        {
+            String tile_under_test = "Next Meeting";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 2)]
+        [Row(2, 2)]
+        public void Verify_Tasks_Tile(int x, int y)
+        {
+            String tile_under_test = "Tasks";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_SalesEssentialsHeadlines_Tile(int x, int y)
+        {
+            String tile_under_test = "Sales Essentials Headlines";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(1, 2)]
+        public void Verify_InnovationAtHP_Tile(int x, int y)
+        {
+            String tile_under_test = "Innovation @HP";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(1, 1)]
+        [Row(2, 2)]
+        public void Verify_Traffic_Tile(int x, int y)
+        {
+            String tile_under_test = "Traffic";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_AccountNews_Tile(int x, int y)
+        {
+            String tile_under_test = "Account News";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_AccountCompetitorNews_Tile(int x, int y)
+        {
+            String tile_under_test = "Account Competitor News";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 2)]
+        public void Verify_HPSalesNow_Tile(int x, int y)
+        {
+            String tile_under_test = "HP Sales Now";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
+
+        [Test]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_JobsAtHP_Tile(int x, int y)
+        {
+            String tile_under_test = "Jobs @HP";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile(tile_under_test)
+               .ClickDone().VerifyTileNotPresent(tile_under_test);
+        }
     }
 }
