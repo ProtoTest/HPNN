@@ -46,7 +46,6 @@ namespace Golem.PageObjects.HPNN
         {
             WebDriverTestBase.driver.Navigate().GoToUrl(Config.GetConfigValue("EnvUrl", "http://katie-dev.lab.hpnewsnow.com/"));
             Common.Delay(5000);
-            WebDriverTestBase.driver.Navigate().Refresh();
 
             return new DashboardPage();
         }

@@ -20,6 +20,7 @@ namespace Golem.PageObjects.HPNN
 
         public SettingsModal EnterSettings()
         {
+            Settings_Link.Highlight();
             Settings_Link.Click();
             return new SettingsModal();
         }

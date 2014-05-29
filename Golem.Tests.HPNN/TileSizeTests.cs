@@ -99,6 +99,30 @@ namespace Golem.Tests.HPNN
                .ClickDone().VerifyTileNotPresent("Next Meeting");
         }
 
+        [Test]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_InTheNews_Tile(int x, int y)
+        {
+            String tile_under_test = "In The News";
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+
+            List<string> tile_list = dashboard_page.GetAllTileTitles();
+
+            // Remove the tile if it is already on the dashboard
+            if (tile_list.Contains(tile_under_test))
+            {
+                dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
+                .RemoveTile(tile_under_test)
+                .ClickDone().VerifyTileNotPresent(tile_under_test);
+            }
+
+            dashboard_page.EnterSettings()
+               .Enter_Tiles()
+               .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize(tile_under_test, x, y);
+        }
 
 
     }
