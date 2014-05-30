@@ -44,7 +44,7 @@ namespace Golem.PageObjects.HPNN
         {
             header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
-            RemoveTileButton.GetVisibleElement().Verify().Visible();
+            RemoveTileDropdown.Verify().Visible();
         }
 
 

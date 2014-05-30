@@ -25,7 +25,7 @@ namespace Golem.PageObjects.HPNN
         public Element MarqueeTile = new Element("Marquee tile", By.ClassName("tile-slide-image"));
         // Just some random tile to verify the tile page content is loaded
         public Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
-        public Element RemoveTileButton = new Element("RemoveTileButton", By.XPath("//div[@gridster-item='tile']//a[@class='remove-btn']"));
+        public Element RemoveTileDropdown = new Element("RemoveTile Dropdown", By.XPath("//div[@gridster-item='tile']//div[contains(@class, 'dropdown')]"));
 
         public Element TileWithTitle(string title)
         {
@@ -34,7 +34,9 @@ namespace Golem.PageObjects.HPNN
 
         public Element RemoveButtonForTile(string title)
         {
-            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]//a[@class='remove-btn']"));
+            Element dropdown = new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]//div[contains(@class, 'dropdown')]/a"));
+            dropdown.Click();
+            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]//li[@id='tile-delete']/a"));
         }
 
         public IReadOnlyCollection<IWebElement> AllTilesOnPage()
@@ -83,7 +85,7 @@ namespace Golem.PageObjects.HPNN
         {
             header.WaitForElements();
             PersonalNewsTile.Verify(60).Visible();
-            RemoveTileButton.Verify().Not().Visible();
+            RemoveTileDropdown.Verify().Not().Visible();
         }
 
         public List<String> GetAllTileTitles()
