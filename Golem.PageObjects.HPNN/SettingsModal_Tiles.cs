@@ -74,6 +74,15 @@ namespace Golem.PageObjects.HPNN
             {
                 type = "hp-innovation-blog";
             }
+            else if (type.Equals("Quick Links"))
+            {
+                type = "quick-links";
+            }
+            else if (type.Equals("Quick Links for Sales"))
+            {
+                type = "quick-link-for-sales";
+            }
+            
             
             
 
