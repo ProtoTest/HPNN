@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using Castle.DynamicProxy.Generators;
 using Golem.PageObjects.HPNN;
 using MbUnit.Framework;
+using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 
 namespace Golem.Tests.HPNN
 {
     public class TileSizeTests : WebDriverTestBase
     {
+        string env = Config.GetConfigValue("EnvUrl", "http://staging.hpnn.hp.com");
 
         [Test]
         [Row(1,1)]
@@ -22,7 +24,9 @@ namespace Golem.Tests.HPNN
             string weather_tile_title = "Local Weather";
             string weather_tile_title_short = "Weather";
             string weather_location = "Denver";
-            DashboardPage.OpenDashboardPage()
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env)
                .EnterSettings()
                .Enter_Tiles()
                .AddWeatherTile(String.Format("{0}x{1}",x,y), weather_location)
@@ -39,7 +43,7 @@ namespace Golem.Tests.HPNN
         [Row(1, 2)]
         public void Verify_StockQuote_Tile(int x, int y)
         {
-            DashboardPage.OpenDashboardPage()
+            DashboardPage.OpenDashboardPageViaKentico()
                .EnterSettings()
                .Enter_Tiles()
                .AddStockQuoteTile("APPL", String.Format("{0}x{1}", x, y))
@@ -55,7 +59,7 @@ namespace Golem.Tests.HPNN
         [Row(1, 2)]
         public void Verify_MyComp_Tile(int x, int y)
         {
-            DashboardPage.OpenDashboardPage()
+            DashboardPage.OpenDashboardPageViaKentico()
                .EnterSettings()
                .Enter_Tiles()
                .AddTileWithType("MyComp",String.Format("{0}x{1}", x, y))
@@ -71,7 +75,7 @@ namespace Golem.Tests.HPNN
         [Row(1, 2)]
         public void Verify_LinkedIn_Tile(int x, int y)
         {
-            DashboardPage.OpenDashboardPage()
+            DashboardPage.OpenDashboardPageViaKentico()
                .EnterSettings()
                .Enter_Tiles()
                .AddTileWithType("Meg on LinkedIn", String.Format("{0}x{1}", x, y))
@@ -89,7 +93,7 @@ namespace Golem.Tests.HPNN
         public void Verify_InTheNews_Tile(int x, int y)
         {
             String tile_under_test = "In The News";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -117,7 +121,7 @@ namespace Golem.Tests.HPNN
         public void Verify_MostRead_Tile(int x, int y)
         {
             String tile_under_test = "Most Read";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -146,7 +150,7 @@ namespace Golem.Tests.HPNN
         public void Verify_MostShared_Tile(int x, int y)
         {
             String tile_under_test = "Most Shared";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -174,7 +178,7 @@ namespace Golem.Tests.HPNN
         public void Verify_MostDiscussed_Tile(int x, int y)
         {
             String tile_under_test = "Most Discussed";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -202,7 +206,7 @@ namespace Golem.Tests.HPNN
         public void Verify_MostLiked_Tile(int x, int y)
         {
             String tile_under_test = "Most Liked";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -230,7 +234,7 @@ namespace Golem.Tests.HPNN
         public void Verify_Trending_Tile(int x, int y)
         {
             String tile_under_test = "Trending";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -257,7 +261,7 @@ namespace Golem.Tests.HPNN
         [Row(2, 1, "Product Showcase")]
         public void Verify_ProductShowcase_Tile(int x, int y, string tile_under_test)
         {
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -289,7 +293,7 @@ namespace Golem.Tests.HPNN
         public void Verify_UpComingEvents_Tile(int x, int y)
         {
             String tile_under_test = "Upcoming Events";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -317,7 +321,7 @@ namespace Golem.Tests.HPNN
         public void Verify_UpComingEventsSales_Tile(int x, int y)
         {
             String tile_under_test = "Upcoming Events for Sales";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -344,7 +348,7 @@ namespace Golem.Tests.HPNN
         public void Verify_DiscussedOnOneHP_Tile(int x, int y)
         {
             String tile_under_test = "Discussed on OneHP";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -373,7 +377,7 @@ namespace Golem.Tests.HPNN
         public void Verify_Inbox_Tile(int x, int y)
         {
             String tile_under_test = "Inbox";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -401,7 +405,7 @@ namespace Golem.Tests.HPNN
         public void Verify_NextMeeting_Tile(int x, int y)
         {
             String tile_under_test = "Next Meeting";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -429,7 +433,7 @@ namespace Golem.Tests.HPNN
         public void Verify_Tasks_Tile(int x, int y)
         {
             String tile_under_test = "Tasks";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -457,7 +461,7 @@ namespace Golem.Tests.HPNN
         public void Verify_SalesEssentialsHeadlines_Tile(int x, int y)
         {
             String tile_under_test = "Sales Essentials Headlines";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -485,7 +489,7 @@ namespace Golem.Tests.HPNN
         public void Verify_InnovationAtHP_Tile(int x, int y)
         {
             String tile_under_test = "Innovation @HP";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -513,7 +517,7 @@ namespace Golem.Tests.HPNN
         public void Verify_Traffic_Tile(int x, int y)
         {
             String tile_under_test = "Traffic";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -541,7 +545,7 @@ namespace Golem.Tests.HPNN
         public void Verify_AccountNews_Tile(int x, int y)
         {
             String tile_under_test = "Account News";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -569,7 +573,7 @@ namespace Golem.Tests.HPNN
         public void Verify_AccountCompetitorNews_Tile(int x, int y)
         {
             String tile_under_test = "Account Competitor News";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -596,7 +600,7 @@ namespace Golem.Tests.HPNN
         public void Verify_HPSalesNow_Tile(int x, int y)
         {
             String tile_under_test = "HP Sales Now";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -624,7 +628,7 @@ namespace Golem.Tests.HPNN
         public void Verify_QuickLinks_Tile(int x, int y)
         {
             String tile_under_test = "Quick Links";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -652,7 +656,7 @@ namespace Golem.Tests.HPNN
         public void Verify_QuickLinksForSales_Tile(int x, int y)
         {
             String tile_under_test = "Quick Links for Sales";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -679,7 +683,7 @@ namespace Golem.Tests.HPNN
         public void Verify_SFDC_PastDue_Tile(int x, int y)
         {
             String tile_under_test = "SFDC Past Due";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -707,7 +711,7 @@ namespace Golem.Tests.HPNN
         public void Verify_SFDC_PipelineForecastByQtr_Tile(int x, int y)
         {
             String tile_under_test = "SFDC Pipeline Forecast by Quarter";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -734,7 +738,7 @@ namespace Golem.Tests.HPNN
         public void Verify_SFDC_Activities_Tile(int x, int y)
         {
             String tile_under_test = "SFDC Activites";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -761,7 +765,7 @@ namespace Golem.Tests.HPNN
         public void Verify_SFDC_OpenAndWon_Tile(int x, int y)
         {
             String tile_under_test = "SFDC Open and Won";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -788,7 +792,7 @@ namespace Golem.Tests.HPNN
         public void Verify_MySalesGuide_Tile(int x, int y)
         {
             String tile_under_test = "My Sales Guide";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 
@@ -816,7 +820,7 @@ namespace Golem.Tests.HPNN
         public void Verify_HP_University_LandD_Tile(int x, int y)
         {
             String tile_under_test = "L&D";
-            DashboardPage dashboard_page = DashboardPage.OpenDashboardPage();
+            DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
 
             List<string> tile_list = dashboard_page.GetAllTileTitles();
 

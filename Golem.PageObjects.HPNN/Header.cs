@@ -14,8 +14,8 @@ namespace Golem.PageObjects.HPNN
     public class Header : BasePageObject
     {
         Element SiteTitle_Label = new Element("Site Title", ByE.Text("HP News Now"));
-        Field Search_Field = new Field("Search box", ByE.PartialAttribute("input", "placeholder", "Search"));
-        Link Settings_Link = new Link("Settings Link", By.ClassName("settings-link"));
+        Field Search_Field = new Field("Search box", By.Id("p_lt_ctl01_SearchBox_txtWord"));
+        Link Settings_Link = new Link("Settings Link", By.Id("settings-link"));
         Element HP_Logo_Link = new Element("HP Logo/Link", By.ClassName("logo"));
 
         public SettingsModal EnterSettings()

@@ -5,23 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Golem.PageObjects.HPNN;
 using MbUnit.Framework;
+using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 
 namespace Golem.Tests.HPNN
 {
     class DashboardTests : WebDriverTestBase
     {
+        string env = Config.GetConfigValue("EnvUrl", "http://staging.hpnn.hp.com");
+
         [Test]
         public void Verify_DefaultTiles()
         {
-            DashboardPage.OpenDashboardPage()
-                .VerifyDefaultTilesDisplayed();
+            string[] tileList =
+        {
+            "Your Personal News", "SFDC Pipeline Forecast by Quarter",
+            "Current FYI Pipeline by GBU", "Account News", "HP Sales Now", "In The News", "MyComp", "Stock",
+            "Sales Quick Links", "Account Competitor News"
+        };
+
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env)
+                .VerifyDefaultTilesDisplayed(tileList);
         }
 
         [Test]
         public void Remove_Tile()
         {
-            DashboardPage.OpenDashboardPage().VerifyTilePosition("Quick links", 7)
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env).VerifyTilePosition("Quick links", 7)
                 .EnterSettings()
                 .sidebar.RearrangeTiles()
                 .RemoveTile("Quick links")
@@ -31,7 +45,9 @@ namespace Golem.Tests.HPNN
         [Test]
         public void Rearrange_Tile()
         {
-            DashboardPage.OpenDashboardPage()
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env)
                 .EnterSettings()
                 .sidebar.RearrangeTiles()
                 .DragTileToFirstPosition("Quick links")
@@ -46,7 +62,9 @@ namespace Golem.Tests.HPNN
         [Test]
         public void Cancel_Rearrange_Tile()
         {
-            DashboardPage.OpenDashboardPage().VerifyTilePosition("Quick links", 7)
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env).VerifyTilePosition("Quick links", 7)
                 .EnterSettings()
                 .sidebar.RearrangeTiles()
                 .DragTileToFirstPosition("Quick links")
@@ -59,7 +77,9 @@ namespace Golem.Tests.HPNN
         [Test]
         public void Add_Tiles()
         {
-            DashboardPage.OpenDashboardPage()
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env)
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType("Tasks", "1x2")
@@ -70,7 +90,9 @@ namespace Golem.Tests.HPNN
         [Test]
         public void Cancel_Add_Tiles()
         {
-            DashboardPage.OpenDashboardPage()
+            KenticoLoginPage.OpenKenticoLoginPage(env)
+                .LoginAs("cbower", "sanders")
+                .OpenDashoard(env)
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType("Trending", "2x2")
