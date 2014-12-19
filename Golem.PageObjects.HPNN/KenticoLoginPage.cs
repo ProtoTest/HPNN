@@ -13,19 +13,18 @@ namespace Golem.PageObjects.HPNN
         public Element PasswordField = new Element("PasswordField", By.Id("Login1_Password"));
         public Element SignInButton = new Element("LogInButton", By.Id("Login1_LoginButton"));
 
-        public CmsDeskPage LoginAs(string username, string password)
+        public DashboardPage LoginAs(string username, string password)
         {
             ClickHereLink.Click();
             LoginField.SendKeys(username);
             PasswordField.SendKeys(password);
             SignInButton.Click();
-            Thread.Sleep(5000);
-            return new CmsDeskPage();
+            return new DashboardPage();
         }
 
         public static KenticoLoginPage OpenKenticoLoginPage(string env)
         {
-            WebDriverTestBase.driver.Navigate().GoToUrl(env + "/cmsdesk");
+            WebDriverTestBase.driver.Navigate().GoToUrl(env + "/CMSPages/logon.aspx?ReturnUrl=%2f");
             return new KenticoLoginPage();
         }
 

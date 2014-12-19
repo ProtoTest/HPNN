@@ -17,20 +17,20 @@ namespace Golem.PageObjects.HPNN
 
         public override void WaitForElements()
         {
-            banner.Verify().Visible();
-            buttonDone.Verify().Visible();
-            buttonCancel.Verify().Visible();
+            banner.Verify().Present();
+            buttonDone.Verify().Present();
+            buttonCancel.Verify().Present();
         }
 
         public DashboardPage ClickDone()
         {
-            buttonDone.Click();
+            buttonDone.WaitUntil().Visible().Click();
             return new DashboardPage();
         }
 
         public DashboardPage ClickCancel()
         {
-            buttonCancel.Click();
+            buttonCancel.WaitUntil().Visible().Click();
             return new DashboardPage();
         }
     }

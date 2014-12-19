@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Golem.PageObjects.HPNN.SettingsModal;
 using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
-using ProtoTest.Golem.WebDriver.Elements;
-using ProtoTest.Golem.WebDriver.Elements.Types;
+using ProtoTest.Golem.WebDriver.UIElements;
+using ProtoTest.Golem.WebDriver.UIElements.Types;
 
 namespace Golem.PageObjects.HPNN
 {
 
     public class BasePersonalizeTile : BasePageObject
     {
-        public SettingsModal_Sidebar sidebar = new SettingsModal_Sidebar();
+        public Sidebar sidebar = new Sidebar();
         public Element page_title = new Element("Personalize Tile Title", ByE.Text("Personalize Your Tile"));
-        public Button back_btn = new Button("Back Button", By.ClassName("personalize-back-button"));
-        public Button done_add_tile_btn = new Button("I'm Done. Add my Tile Button", By.PartialLinkText("Add My Tile"));
+        public Button back_btn = new Button("Back Button", By.LinkText("Back"));
+        public Button done_add_tile_btn = new Button("DoneButton", By.PartialLinkText("Done"));
+        public Element AddButton = new Element("AddButton",By.LinkText("Add"));
+
 
         public EditDashboardPage ClickAddMyTile()
         {
@@ -25,10 +28,10 @@ namespace Golem.PageObjects.HPNN
             return new EditDashboardPage();
         }
 
-        public SettingsModal_Tiles ClickBack()
+        public MyTiles ClickBack()
         {
             back_btn.Click();
-            return new SettingsModal_Tiles();
+            return new MyTiles();
         }
 
         public override void WaitForElements()

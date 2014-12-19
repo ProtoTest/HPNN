@@ -59,9 +59,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="ProtoTest.Golem">
-      <HintPath>..\packages\ProtoTest.Golem.1.1.8.0\lib\net40\ProtoTest.Golem.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -85,19 +82,47 @@
     <Compile Include="CmsDeskPage.cs" />
     <Compile Include="DashboardPage.cs" />
     <Compile Include="EditDashboardPage.cs" />
+    <Compile Include="Footer.cs" />
     <Compile Include="Header.cs" />
     <Compile Include="KenticoLoginPage.cs" />
+    <Compile Include="LoadingPanel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="PersonalizeWeatherPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RearrangeTilesBanner.cs" />
-    <Compile Include="SettingsModal.cs" />
-    <Compile Include="SettingsModal_NewsFeeds.cs" />
-    <Compile Include="SettingsModal_Sidebar.cs" />
-    <Compile Include="SettingsModal_Tiles.cs" />
-    <Compile Include="SettingsModal_YourInformation.cs" />
+    <Compile Include="SettingsModal\SettingsModal.cs" />
+    <Compile Include="SettingsModal\MyFeeds.cs" />
+    <Compile Include="SettingsModal\Sidebar.cs" />
+    <Compile Include="SettingsModal\MyTiles.cs" />
+    <Compile Include="SettingsModal\YourInformation.cs" />
+    <Compile Include="Tiles\AccountCompetitorNews.cs" />
+    <Compile Include="Tiles\AccountNews.cs" />
+    <Compile Include="Tiles\BaseTile.cs" />
+    <Compile Include="Tiles\CurrentFYPipeline.cs" />
+    <Compile Include="Tiles\DicussedOnOneHP.cs" />
+    <Compile Include="Tiles\HPSalesNow.cs" />
+    <Compile Include="Tiles\HPUniversity.cs" />
+    <Compile Include="Tiles\InnovationShowcase.cs" />
+    <Compile Include="Tiles\InTheNews.cs" />
+    <Compile Include="Tiles\JobsAtHp.cs" />
+    <Compile Include="Tiles\KeyDates.cs" />
+    <Compile Include="Tiles\MegOnLinkedIn.cs" />
+    <Compile Include="Tiles\MostDiscussed.cs" />
+    <Compile Include="Tiles\MostLiked.cs" />
+    <Compile Include="Tiles\MostRead.cs" />
+    <Compile Include="Tiles\MostShared.cs" />
+    <Compile Include="Tiles\SalesEssentialsHeadlines.cs" />
+    <Compile Include="Tiles\SalesQuickLinks.cs" />
+    <Compile Include="Tiles\Stock.cs" />
+    <Compile Include="Tiles\Traffic.cs" />
+    <Compile Include="Tiles\Marquee.cs" />
+    <Compile Include="Tiles\MyComp.cs" />
+    <Compile Include="Tiles\SFDCPipeline.cs" />
+    <Compile Include="Tiles\Trending.cs" />
+    <Compile Include="Tiles\Weather.cs" />
+    <Compile Include="Tiles\YourPersonalNews.cs" />
     <Compile Include="TutorialOverview.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,23 +130,21 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Proxy\browsermob-proxy-2.0-beta-8-bin.zip" />
     <None Include="packages.config" />
-    <None Include="Proxy\browsermob-proxy-2.0-beta-8-bin.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chromedriver.exe" />
-    <Content Include="IEDriverServer.exe" />
+    <ProjectReference Include="..\..\..\..\Desktop\GitHub\ProtoTest.Golem\ProtoTest.Golem\ProtoTest.Golem.csproj">
+      <Project>{dabfc1cb-7c18-4ac7-afa2-91c453e9e266}</Project>
+      <Name>ProtoTest.Golem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
     <PostBuildEvent>
-xcopy /y "$(ProjectDir)chromedriver.exe" "$(TargetDir)"
-xcopy /y "$(ProjectDir)IEDriverServer.exe" "$(TargetDir)"</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

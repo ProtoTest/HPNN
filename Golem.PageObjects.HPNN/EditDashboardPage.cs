@@ -25,7 +25,6 @@ namespace Golem.PageObjects.HPNN
         public DashboardPage ClickDone()
         {
             rearrangeBanner.ClickDone();
-            ProtoTest.Golem.Core.Common.Delay(3000);
             return new DashboardPage();
         }
 
@@ -42,7 +41,7 @@ namespace Golem.PageObjects.HPNN
 
         public override void WaitForElements()
         {
-            header.WaitForElements();
+           // Header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
             RemoveTileDropdown.Verify().Visible();
         }

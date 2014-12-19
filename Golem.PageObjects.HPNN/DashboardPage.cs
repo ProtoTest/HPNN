@@ -4,30 +4,34 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Golem.PageObjects.HPNN.Tiles;
 using MbUnit.Framework;
 using OpenQA.Selenium.Interactions;
 using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
-using ProtoTest.Golem.WebDriver.Elements;
-using ProtoTest.Golem.WebDriver.Elements.Types;
+using ProtoTest.Golem.WebDriver.UIElements;
+using ProtoTest.Golem.WebDriver.UIElements.Types;
 
 namespace Golem.PageObjects.HPNN
 {
     public class DashboardPage : BasePageObject
     {
        // When default tiles are established, add 'em here
+ 
+        public Header Header = new Header();
+        public Footer Footer = new Footer();
+        public TutorialOverview tutorial = new TutorialOverview();
+       // public Marquee marquee = new Marquee();
 
-        public Header header = new Header();
-        TutorialOverview tutorial = new TutorialOverview();
+        public Element LoadingAnimation = new Element("Loading Animation", By.Id("preloadAnim"));
         public Element ClosePreviewLink = new Element("CLosePreviewLink", By.Id("m_pnlPreviewInfo"));
         public Element TileContainer = new Element("TileContainer", By.Id("container"));
         public Element MarqueeTile = new Element("Marquee tile", By.ClassName("slides"));
         // Just some random tile to verify the tile page content is loaded
         public Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
         public Element RemoveTileDropdown = new Element("RemoveTile Dropdown", By.XPath("//div[@gridster-item='tile']//div[contains(@class, 'dropdown')]"));
-        public Element LoadingAnimation = new Element("Loading Animation", By.Id("preloadAnim"));
-
+        public Element HPNNLink = new Element(By.LinkText("HP News Now"));
         public Element TileWithTitle(string title)
         {
             return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]/div"));
@@ -45,9 +49,9 @@ namespace Golem.PageObjects.HPNN
             return driver.FindElements(By.XPath("//div[@gridster-item='tile']"));
         }
 
-        public SettingsModal EnterSettings()
+        public SettingsModal.SettingsModal EnterSettings()
         {
-            return header.EnterSettings();
+            return Header.EnterSettings();
         }
 
         private DashboardPage VerifyTilewithTitleDisplayed(string tile_title)
@@ -76,15 +80,10 @@ namespace Golem.PageObjects.HPNN
 
         public override void WaitForElements()
         {
-            Element closeButton = new Element(By.LinkText("Close"));
-            closeButton.Click();
-            driver.Navigate().Refresh();
-            LoadingAnimation.WaitUntil().Not(60).Visible();
-            if (tutorial.OverviewPanel.Displayed)
-                tutorial.CloseTutorial();
-            header.WaitForElements();
-            PersonalNewsTile.Verify(60).Visible();
-            RemoveTileDropdown.Verify(60).Not().Visible();
+            LoadingAnimation.Verify().Not().Visible();
+            Header.WaitForElements();
+            PersonalNewsTile.Verify().Visible();
+            RemoveTileDropdown.Verify().Not().Visible();
         }
 
         public List<String> GetAllTileTitles()
@@ -125,16 +124,27 @@ namespace Golem.PageObjects.HPNN
 
         public static DashboardPage OpenDashboardPageViaKentico()
         {
-            return KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
-                .LoginAs("cbower", "sanders")
-                .OpenDashoard(Config.Settings.runTimeSettings.EnvironmentUrl);
+            string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
+            string password = Config.GetConfigValue("SalesPassword", "asdf");
+            return
+                KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                    .LoginAs(username,password);
         }
 
         public DashboardPage CloseTutorial()
         {
-            TutorialOverview overview = new TutorialOverview();
-            overview.CloseTutorial();
+            tutorial.OverviewPanel.ClickWithOffset(100, 100);
             return new DashboardPage();
+        }
+
+        public DashboardPage VerifyTiles(Type[] types) 
+        {
+            foreach (var type in types)
+            {
+             
+             Activator.CreateInstance(type);
+            }
+            return this;
         }
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
-using ProtoTest.Golem.WebDriver.Elements;
-using ProtoTest.Golem.WebDriver.Elements.Types;
+using ProtoTest.Golem.WebDriver.UIElements;
+using ProtoTest.Golem.WebDriver.UIElements.Types;
 
 namespace Golem.PageObjects.HPNN
 {
@@ -18,19 +18,18 @@ namespace Golem.PageObjects.HPNN
         Link Settings_Link = new Link("Settings Link", By.Id("settings-link"));
         Element HP_Logo_Link = new Element("HP Logo/Link", By.ClassName("logo"));
 
-        public SettingsModal EnterSettings()
+        public SettingsModal.SettingsModal EnterSettings()
         {
-            Settings_Link.Highlight();
             Settings_Link.Click();
-            return new SettingsModal();
+            return new SettingsModal.SettingsModal();
         }
 
         public override void WaitForElements()
         {
-            SiteTitle_Label.Verify().Visible();
-            Search_Field.Verify().Visible();
-            Settings_Link.Verify().Visible();
-            HP_Logo_Link.Verify().Visible();
+            SiteTitle_Label.Verify().Present();
+            Search_Field.Verify().Present();
+            Settings_Link.Verify().Present();
+            HP_Logo_Link.Verify().Present();
         }
     }
 }
