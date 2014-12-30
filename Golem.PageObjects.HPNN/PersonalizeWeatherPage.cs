@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Golem.PageObjects.HPNN.SettingsModal;
 using ProtoTest.Golem.Core;
@@ -25,9 +26,14 @@ namespace Golem.PageObjects.HPNN
         public PersonalizeWeatherPage EnterLocation(string location)
         {
             if(!location_field.Displayed)
-                RemoveButton.Click();
+                RemoveButton.WaitUntil().Visible().Click();
+            Thread.Sleep(3000);
             location_field.WaitUntil().Visible().SendKeys(location);
+            Thread.Sleep(3000);
+            location_field.WaitUntil().Visible().SendKeys(Keys.Down + Keys.Enter);
+            Thread.Sleep(3000);
             AddButton.Click();
+            Thread.Sleep(3000);
             return this;
         }
 
@@ -58,7 +64,7 @@ namespace Golem.PageObjects.HPNN
         public override void WaitForElements()
         {
             base.WaitForElements();
-            location_field.Verify().Present();
+           // location_field.Verify().Present();
             temp_type_radio.Verify().Present();
         }
     }

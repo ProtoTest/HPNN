@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Gallio.Common.Collections;
 using OpenQA.Selenium;
@@ -12,7 +13,7 @@ namespace Golem.PageObjects.HPNN
     public class TutorialOverview : BasePageObject
     {
         public Element OverviewPanel = new Element("Overview Panel", By.ClassName("introjs-tooltiptext"));
-        public Element NextButton = new Element("NextButton",By.LinkText("Next"));
+        public Element NextButton = new Element("NextButton", By.ClassName("introjs-nextbutton"));
         public Element StepCountLabel = new Element("StepCountLabel",By.ClassName("intro-js-step-count"));
         public Element ExitButton = new Element("ExitButton",By.LinkText("Exit"));
         public Element TutorialVideosButton = new Element("TutorialVideosButton",By.PartialLinkText("Tutorial Videos"));
@@ -51,10 +52,15 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage CloseTutorial()
         {
-            NextButton.GetVisibleElement().Click();
-            NextButton.GetVisibleElement().Click();
-            NextButton.GetVisibleElement().Click();
+            NextButton.WaitUntil(30).Visible().Click();
+            NextButton.WaitUntil(30).Visible().Click();
             ExitButton.Click();
+            return new DashboardPage();
+        }
+
+        public DashboardPage VerifyTutorialNotVisible()
+        {
+            OverviewPanel.Verify().Not().Visible();
             return new DashboardPage();
         }
     }

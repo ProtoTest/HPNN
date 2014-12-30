@@ -22,7 +22,7 @@ namespace Golem.Tests.HPNN
         {
             string weather_tile_title = "Local Weather";
             string weather_tile_title_short = "Weather";
-            string weather_location = "Denver, CO";
+            string weather_location = "Denver, CO, United States";
             DashboardPage.OpenDashboardPageViaKentico()
                .EnterSettings()
                .Enter_Tiles()

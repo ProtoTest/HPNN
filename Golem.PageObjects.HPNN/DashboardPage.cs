@@ -23,7 +23,7 @@ namespace Golem.PageObjects.HPNN
         public Footer Footer = new Footer();
         public TutorialOverview tutorial = new TutorialOverview();
        // public Marquee marquee = new Marquee();
-
+        public Element mainForm = new Element("Main form", By.Id("form"));
         public Element LoadingAnimation = new Element("Loading Animation", By.Id("preloadAnim"));
         public Element ClosePreviewLink = new Element("CLosePreviewLink", By.Id("m_pnlPreviewInfo"));
         public Element TileContainer = new Element("TileContainer", By.Id("container"));
@@ -49,6 +49,8 @@ namespace Golem.PageObjects.HPNN
             return driver.FindElements(By.XPath("//div[@gridster-item='tile']"));
         }
 
+  
+         
         public SettingsModal.SettingsModal EnterSettings()
         {
             return Header.EnterSettings();
@@ -80,7 +82,8 @@ namespace Golem.PageObjects.HPNN
 
         public override void WaitForElements()
         {
-            LoadingAnimation.Verify().Not().Visible();
+            
+            LoadingAnimation.WaitUntil().Not().Visible();
             Header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
             RemoveTileDropdown.Verify().Not().Visible();
@@ -133,7 +136,7 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage CloseTutorial()
         {
-            tutorial.OverviewPanel.ClickWithOffset(100, 100);
+            tutorial.CloseTutorial();
             return new DashboardPage();
         }
 
@@ -144,6 +147,12 @@ namespace Golem.PageObjects.HPNN
              
              Activator.CreateInstance(type);
             }
+            return this;
+        }
+
+        public DashboardPage VerifyTutorialNotVisible()
+        {
+            tutorial.VerifyTutorialNotVisible();
             return this;
         }
     }
