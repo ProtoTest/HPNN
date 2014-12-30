@@ -24,14 +24,12 @@ namespace Golem.Tests.HPNN
             string weather_tile_title_short = "Weather";
             string weather_location = "Denver, CO, United States";
             DashboardPage.OpenDashboardPageViaKentico()
-               .EnterSettings()
-               .Enter_Tiles()
-               .AddWeatherTile(String.Format("{0}x{1}",x,y), weather_location)
-               .ClickDone()
-               .VerifyTileSize(weather_tile_title_short, x,y)
-               .EnterSettings().sidebar.RearrangeTiles()
-               .RemoveTile(weather_tile_title_short)
-               .ClickDone().VerifyTileNotPresent(weather_tile_title_short);
+                .RemoveTileIfPresent("Weather")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddWeatherTile(String.Format("{0}x{1}", x, y), weather_location)
+                .ClickDone()
+                .VerifyTileSize(weather_tile_title_short, x, y);
         }
 
         [Test]
@@ -40,15 +38,12 @@ namespace Golem.Tests.HPNN
         public void Verify_StockQuote_Tile(int x, int y)
         {
             DashboardPage.OpenDashboardPageViaKentico()
-               .EnterSettings().sidebar.RearrangeTiles()
-               .RemoveTile("Stock")
-               .ClickDone()
-               .EnterSettings()
-               .Enter_Tiles()
-               .AddStockQuoteTile("APPL", String.Format("{0}x{1}", x, y))
-               .ClickDone()
-               .VerifyTileSize("Stock", x, y)
-               .VerifyTileNotPresent("Stock");
+                .RemoveTileIfPresent("Stock")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddStockQuoteTile("AAPL - Apple Inc.", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Stock", x, y);
         }
 
         //[Test]

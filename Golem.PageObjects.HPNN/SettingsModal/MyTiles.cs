@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using OpenQA.Selenium;
 using ProtoTest.Golem.WebDriver;
 
 namespace Golem.PageObjects.HPNN.SettingsModal
@@ -106,9 +107,10 @@ namespace Golem.PageObjects.HPNN.SettingsModal
         {
             ButtonForTileType("Stock").WaitUntil().Visible().Click();
             ButtonForSize(size).WaitUntil().Visible().Click();
-            
-            symbolField.SendKeys(symbol);
-            symbolField.SendKeys(Keys.Down+Keys.Enter);
+
+            symbolField.WaitUntil().Visible().SendKeys(symbol);
+            Thread.Sleep(2000);
+            symbolField.SendKeys(Keys.Down + Keys.Enter);
             addButton.Click();
             doneButton.Click();
             return new EditDashboardPage();

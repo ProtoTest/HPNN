@@ -39,6 +39,7 @@ namespace Golem.PageObjects.HPNN
             return new EditDashboardPage();
         }
 
+        
         public override void WaitForElements()
         {
            // Header.WaitForElements();

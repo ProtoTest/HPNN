@@ -35,6 +35,8 @@ namespace Golem.PageObjects.HPNN
             return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]/div"));
         }
 
+
+
         public Element RemoveButtonForTile(string title)
         {
             Element dropdown = new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]//div[contains(@class, 'dropdown')]/a"));
@@ -152,6 +154,14 @@ namespace Golem.PageObjects.HPNN
         public DashboardPage VerifyTutorialNotVisible()
         {
             tutorial.VerifyTutorialNotVisible();
+            return this;
+        }
+
+        public DashboardPage RemoveTileIfPresent(string title)
+        {
+            var tile = TileWithTitle(title);
+            if (tile.Present)
+                return EnterSettings().Enter_Tiles().Personalize().RemoveTile(title).ClickDone();
             return this;
         }
     }
