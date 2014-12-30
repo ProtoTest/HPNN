@@ -15,9 +15,9 @@ namespace Golem.Tests.HPNN
     {
 
         [Test]
-        [Row(1,1)]
-     //   [Row(1,2)]
-     //   [Row(2,1)]
+        [Row(1, 1)]
+        [Row(1, 2)]
+        [Row(2, 1)]
         public void Verify_Weather_Tile(int x, int y)
         {
             string weather_tile_title = "Local Weather";
@@ -38,18 +38,18 @@ namespace Golem.Tests.HPNN
         //[Row(1, 1)]
         //[Row(2, 1)]
         //[Row(1, 2)]
-        //public void Verify_StockQuote_Tile(int x, int y)
-        //{
-        //    DashboardPage.OpenDashboardPageViaKentico()
-        //       .EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddStockQuoteTile("APPL", String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize("Stock Quote", x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile("Stock Quote")
-        //       .ClickDone().VerifyTileNotPresent("Stock Quote");
-        //}
+        public void Verify_StockQuote_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico()
+               .EnterSettings()
+               .Enter_Tiles()
+               .AddStockQuoteTile("APPL", String.Format("{0}x{1}", x, y))
+               .ClickDone()
+               .VerifyTileSize("Stock Quote", x, y)
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile("Stock Quote")
+               .ClickDone().VerifyTileNotPresent("Stock Quote");
+        }
 
         //[Test]
         //[Row(1, 1)]

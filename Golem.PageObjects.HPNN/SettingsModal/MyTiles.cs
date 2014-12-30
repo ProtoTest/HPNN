@@ -8,7 +8,7 @@ namespace Golem.PageObjects.HPNN.SettingsModal
         Sidebar sidebar = new Sidebar();
 
         Element PageHeading_Label = new Element("My Tiles Heading", ByE.Text("My Tiles"));
-        public Element PersonalizeButton = new Element("PersonalizeButton",ByE.PartialText("Personalize"));
+        public Element PersonalizeButton = new Element("PersonalizeButton", By.Id("config-btn"));
 
         public Element ButtonForTileType(string name)
         {
@@ -22,7 +22,7 @@ namespace Golem.PageObjects.HPNN.SettingsModal
 
         public EditDashboardPage Personalize()
         {
-            PersonalizeButton.Click();
+            PersonalizeButton.WaitUntil().Visible().Click();
             return new EditDashboardPage();
         }
 

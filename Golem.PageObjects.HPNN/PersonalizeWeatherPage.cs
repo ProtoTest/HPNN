@@ -25,15 +25,11 @@ namespace Golem.PageObjects.HPNN
 
         public PersonalizeWeatherPage EnterLocation(string location)
         {
-            if(!location_field.Displayed)
+            if (RemoveButton.Displayed)
                 RemoveButton.WaitUntil().Visible().Click();
-            Thread.Sleep(3000);
             location_field.WaitUntil().Visible().SendKeys(location);
-            Thread.Sleep(3000);
             location_field.WaitUntil().Visible().SendKeys(Keys.Down + Keys.Enter);
-            Thread.Sleep(3000);
-            AddButton.Click();
-            Thread.Sleep(3000);
+            AddButton.WaitUntil().Visible().Click();
             return this;
         }
 

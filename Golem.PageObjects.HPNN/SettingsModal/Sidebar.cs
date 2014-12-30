@@ -35,7 +35,6 @@ namespace Golem.PageObjects.HPNN.SettingsModal
         public override void WaitForElements()
         {
             UserText.Verify().Visible();
-            AvatarImage.Verify().Visible();
             UseMyHPPhotoButton.Verify().Visible();
             MyTilesButton.Verify().Visible();
             MyFeedsButton.Verify().Visible();

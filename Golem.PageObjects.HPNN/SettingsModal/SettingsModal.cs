@@ -1,4 +1,5 @@
-﻿using ProtoTest.Golem.WebDriver;
+﻿using OpenQA.Selenium;
+using ProtoTest.Golem.WebDriver;
 
 namespace Golem.PageObjects.HPNN.SettingsModal
 {
@@ -6,9 +7,13 @@ namespace Golem.PageObjects.HPNN.SettingsModal
     public class SettingsModal : BasePageObject
     {
         public Sidebar sidebar = new Sidebar();
+        public Element ReplayTutorialButotn = new Element(By.LinkText("Replay Tutorial"));
 
-
-
+        public TutorialOverview ReplayTutorial()
+        {
+            ReplayTutorialButotn.Click();
+            return new TutorialOverview();
+        }
        
         public MyFeeds Enter_NewsFeeds()
         {

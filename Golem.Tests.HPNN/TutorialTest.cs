@@ -10,10 +10,11 @@ using ProtoTest.Golem.WebDriver;
 
 namespace Golem.Tests.HPNN
 {
+    [Parallelizable]
     class TutorialTest : WebDriverTestBase
     {
-        [Test]
-        public void TestTutorial()
+        [Test,Parallelizable]
+        public void TestTUtorialSteps()
         {
             string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
            string password = Config.GetConfigValue("SalesPassword", "asdf");
@@ -27,5 +28,24 @@ namespace Golem.Tests.HPNN
                 .Exit()
                 .VerifyTutorialNotVisible();
         }
+
+
+        [Test, Parallelizable]
+        public void TestReplayTutorial()
+        {
+          //  Config.Settings.runTimeSettings.HighlightFoundElements = false;
+
+            string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
+            string password = Config.GetConfigValue("SalesPassword", "asdf");
+            KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAs(username, password)
+                .CloseTutorial()
+                .VerifyTutorialNotVisible()
+                .EnterSettings()
+                .ReplayTutorial()
+                .CloseTutorial()
+                .VerifyTutorialNotVisible();
+        }
+
     }
 }

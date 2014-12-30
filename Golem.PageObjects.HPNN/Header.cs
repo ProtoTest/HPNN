@@ -21,7 +21,7 @@ namespace Golem.PageObjects.HPNN
 
         public SettingsModal.SettingsModal EnterSettings()
         {
-            Container.FindElement(User_Dropdown).Click();
+            new Element(Container.FindElement(User_Dropdown)).WaitUntil().Visible().Click();
             return new SettingsModal.SettingsModal();
         }
 

@@ -131,14 +131,15 @@ namespace Golem.PageObjects.HPNN
             string password = Config.GetConfigValue("SalesPassword", "asdf");
             return
                 KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
-                    .LoginAs(username,password);
+                    .LoginAs(username, password).CloseTutorial();
         }
 
         public DashboardPage CloseTutorial()
         {
-            tutorial.CloseTutorial();
+            tutorial.CloseTutorial().VerifyTutorialNotVisible();
             return new DashboardPage();
         }
+
 
         public DashboardPage VerifyTiles(Type[] types) 
         {
