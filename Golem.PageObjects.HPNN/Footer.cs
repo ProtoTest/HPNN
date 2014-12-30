@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProtoTest.Golem.Core;
-using ProtoTest.Golem.WebDriver;
+﻿using ProtoTest.Golem.WebDriver;
 using OpenQA.Selenium;
-using ProtoTest.Golem.WebDriver.UIElements;
-using ProtoTest.Golem.WebDriver.UIElements.Types;
 
 namespace Golem.PageObjects.HPNN
 {

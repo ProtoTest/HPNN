@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using ProtoTest.Golem.WebDriver;
-using ProtoTest.Golem.WebDriver.UIElements.Types;
+using ProtoTest.Golem.WebDriver.Elements.Types;
 
 namespace Golem.PageObjects.HPNN.SettingsModal
 {

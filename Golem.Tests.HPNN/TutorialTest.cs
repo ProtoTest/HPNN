@@ -10,10 +10,11 @@ using ProtoTest.Golem.WebDriver;
 
 namespace Golem.Tests.HPNN
 {
-    [Parallelizable]
+ //   [Parallelizable]
     class TutorialTest : WebDriverTestBase
     {
-        [Test,Parallelizable]
+        [Test]
+     //   [Parallelizable]
         public void TestTUtorialSteps()
         {
             string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
@@ -30,7 +31,8 @@ namespace Golem.Tests.HPNN
         }
 
 
-        [Test, Parallelizable]
+        [Test]
+        //   [Parallelizable]
         public void TestReplayTutorial()
         {
           //  Config.Settings.runTimeSettings.HighlightFoundElements = false;

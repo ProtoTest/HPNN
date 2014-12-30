@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using Golem.PageObjects.HPNN.SettingsModal;
 using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
-using OpenQA.Selenium;
-using ProtoTest.Golem.WebDriver.UIElements;
-using ProtoTest.Golem.WebDriver.UIElements.Types;
 
 namespace Golem.PageObjects.HPNN
 {

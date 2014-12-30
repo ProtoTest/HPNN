@@ -34,21 +34,21 @@ namespace Golem.Tests.HPNN
                .ClickDone().VerifyTileNotPresent(weather_tile_title_short);
         }
 
-        //[Test]
-        //[Row(1, 1)]
-        //[Row(2, 1)]
-        //[Row(1, 2)]
+        [Test]
+        [Row(1, 1)]
+        [Row(2, 1)]
         public void Verify_StockQuote_Tile(int x, int y)
         {
             DashboardPage.OpenDashboardPageViaKentico()
+               .EnterSettings().sidebar.RearrangeTiles()
+               .RemoveTile("Stock")
+               .ClickDone()
                .EnterSettings()
                .Enter_Tiles()
                .AddStockQuoteTile("APPL", String.Format("{0}x{1}", x, y))
                .ClickDone()
-               .VerifyTileSize("Stock Quote", x, y)
-               .EnterSettings().sidebar.RearrangeTiles()
-               .RemoveTile("Stock Quote")
-               .ClickDone().VerifyTileNotPresent("Stock Quote");
+               .VerifyTileSize("Stock", x, y)
+               .VerifyTileNotPresent("Stock");
         }
 
         //[Test]

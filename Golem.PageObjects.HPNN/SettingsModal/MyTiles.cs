@@ -6,7 +6,9 @@ namespace Golem.PageObjects.HPNN.SettingsModal
     public class MyTiles : BasePageObject
     {
         Sidebar sidebar = new Sidebar();
-
+        Element symbolField = new Element(By.Id("select-company"));
+        Element addButton = new Element(By.LinkText("Add Stock"));
+        Element doneButton = new Element(By.LinkText("Done"));
         Element PageHeading_Label = new Element("My Tiles Heading", ByE.Text("My Tiles"));
         public Element PersonalizeButton = new Element("PersonalizeButton", By.Id("config-btn"));
 
@@ -100,13 +102,14 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             return new EditDashboardPage();
         }
 
-        public EditDashboardPage AddStockQuoteTile(string size, string symbol)
+        public EditDashboardPage AddStockQuoteTile(string symbol, string size)
         {
-            ButtonForTileType("Stock Quote").WaitUntil().Visible().Click();
+            ButtonForTileType("Stock").WaitUntil().Visible().Click();
             ButtonForSize(size).WaitUntil().Visible().Click();
-            Element symbolField = new Element(By.XPath("//input[contains(@title,'Stock Quote')]"));
-            Element doneButton = new Element(By.LinkText("I'm Done. Add My Tile"));
+            
             symbolField.SendKeys(symbol);
+            symbolField.SendKeys(Keys.Down+Keys.Enter);
+            addButton.Click();
             doneButton.Click();
             return new EditDashboardPage();
         }
