@@ -35,11 +35,11 @@ namespace Golem.PageObjects.HPNN.SettingsModal
         public override void WaitForElements()
         {
             UserText.Verify().Visible();
-            UseMyHPPhotoButton.Verify().Visible();
-            MyTilesButton.Verify().Visible();
-            MyFeedsButton.Verify().Visible();
-            ReplayTutorialButton.Verify().Visible();
-            AboutHPNNButton.Verify().Visible();
+            //UseMyHPPhotoButton.Verify().Visible();
+            //MyTilesButton.Verify().Visible();
+            //MyFeedsButton.Verify().Visible();
+            //ReplayTutorialButton.Verify().Visible();
+            //AboutHPNNButton.Verify().Visible();
         }
     }
 

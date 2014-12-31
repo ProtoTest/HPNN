@@ -88,7 +88,10 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             {
                 type = "icon-My Comp";
             }
-            
+            else if (type.Contains("Showcase"))
+            {
+                type = "icon-innovation-showcase";
+            }
             
 
             ButtonForTileType(type).WaitUntil().Visible().Click();

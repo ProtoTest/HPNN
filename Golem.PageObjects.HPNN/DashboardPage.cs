@@ -32,7 +32,7 @@ namespace Golem.PageObjects.HPNN
         public Element HPNNLink = new Element(By.LinkText("HP News Now"));
         public Element TileWithTitle(string title)
         {
-            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[text()='" + title + "']]/div"));
+            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[contains(text(),'" + title + "')]]/div"));
         }
 
 

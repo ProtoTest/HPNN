@@ -74,209 +74,113 @@ namespace Golem.Tests.HPNN
                 .Enter_Tiles()
                 .AddTileWithType("Meg on LinkedIn", String.Format("{0}x{1}", x, y))
                 .ClickDone()
-                .VerifyTileSize("Meg on LinkedIn", x, y);
+                .VerifyTileSize("Meg on LinkedIn", x, y)
+                .VerifyTile(typeof(MegOnLinkedIn));
         }
 
 
-        //[Test]
-        //[Row(2, 1)]
-        //[Row(2, 2)]
-        //public void Verify_InTheNews_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "In The News";
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
+        [Test]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_InTheNews_Tile(int x, int y)
+        {
+            String tile_under_test = "In The News";
+            DashboardPage.OpenDashboardPageViaKentico()
+                .RemoveTileIfPresent(tile_under_test)
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize(tile_under_test, x, y)
+                .VerifyTile(typeof (InTheNews));
+        }
 
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test]
-        //[Row(1, 3)]
-        //[Row(2, 3)]
-        //public void Verify_MostRead_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Most Read";
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostRead_Tile(int x, int y)
+        {
+            String tile_under_test = "Most Read";
+            DashboardPage.OpenDashboardPageViaKentico().RemoveTileIfPresent("Most Read")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize(tile_under_test, x, y)
+                .VerifyTile(typeof (MostRead));
+        }
 
 
-        //[Test]
-        //[Row(1, 3)]
-        //[Row(2, 3)]
-        //public void Verify_MostShared_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Most Shared";
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostShared_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico().RemoveTileIfPresent("Most Shared")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Most Shared", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Most Shared", x, y)
+                .VerifyTile(typeof (MostShared));
+        }
 
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test]
-        //[Row(1, 3)]
-        //[Row(2, 3)]
-        //public void Verify_MostDiscussed_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Most Discussed";
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test]
-        //[Row(1, 3)]
-        //[Row(2, 3)]
-        //public void Verify_MostLiked_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Most Liked";
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostDiscussed_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico().RemoveTileIfPresent("Most Discussed")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Most Discussed", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Most Discussed", x, y)
+                .VerifyTile(typeof (MostDiscussed));
+        }
 
 
-        //[Test]
-        //[Row(2, 2)]
-        //public void Verify_Trending_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Trending";
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
+        [Test]
+        [Row(1, 3)]
+        [Row(2, 3)]
+        public void Verify_MostLiked_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico().RemoveTileIfPresent("Most Liked")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Most Liked", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Most Liked", x, y)
+                .VerifyTile(typeof (MostLiked));
+        }
 
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
+        [Test]
+        [Row(2, 2)]
+        public void Verify_Trending_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico().RemoveTileIfPresent("Trending")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Trending", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Trending", x, y)
+                .VerifyTile(typeof(Trending));
+        }
 
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
 
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test]
-        //[Row(1, 1, "Product Show..")]
-        //[Row(2, 1, "Product Showcase")]
-        //public void Verify_ProductShowcase_Tile(int x, int y, string tile_under_test)
-        //{
-        //    DashboardPage dashboard_page = DashboardPage.OpenDashboardPageViaKentico();
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    foreach (string s in tile_list)
-        //    {
-        //        if (s.Contains("Product Show"))
-        //        {
-        //            dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //            .RemoveTile("Product Show..")
-        //            .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //            break;
-        //        }
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType("Product Showcase", String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
+        [Test]
+        [Row(1, 1)]
+        [Row(2, 1)]
+        public void Verify_ProductShowcase_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico().RemoveTileIfPresent("Showcase")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("showcase", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Showcase", x, y)
+                .VerifyTile(typeof(InnovationShowcase));
+        }
 
         //[Test]
         //[Row(1, 2)]
