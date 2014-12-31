@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Castle.DynamicProxy.Generators;
 using Golem.PageObjects.HPNN;
+using Golem.PageObjects.HPNN.Tiles;
 using MbUnit.Framework;
 using ProtoTest.Golem.Core;
 using ProtoTest.Golem.WebDriver;
@@ -29,7 +30,8 @@ namespace Golem.Tests.HPNN
                 .Enter_Tiles()
                 .AddWeatherTile(String.Format("{0}x{1}", x, y), weather_location)
                 .ClickDone()
-                .VerifyTileSize(weather_tile_title_short, x, y);
+                .VerifyTileSize(weather_tile_title_short, x, y)
+                .VerifyTile(typeof(Weather));
         }
 
         [Test]
@@ -43,40 +45,37 @@ namespace Golem.Tests.HPNN
                 .Enter_Tiles()
                 .AddStockQuoteTile("AAPL - Apple Inc.", String.Format("{0}x{1}", x, y))
                 .ClickDone()
-                .VerifyTileSize("Stock", x, y);
+                .VerifyTileSize("Stock", x, y)
+                .VerifyTile(typeof(Stock));
         }
 
-        //[Test]
-        //[Row(1, 1)]
-        //[Row(1, 2)]
-        //public void Verify_MyComp_Tile(int x, int y)
-        //{
-        //    DashboardPage.OpenDashboardPageViaKentico()
-        //       .EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType("MyComp",String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize("MyComp", x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile("MyComp")
-        //       .ClickDone().VerifyTileNotPresent("MyComp");
-        //}
+        [Test]
+        [Row(2, 1)]
+        public void Verify_MyComp_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico()
+                .RemoveTileIfPresent("MyComp")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("MyComp", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("MyComp", x, y)
+                .VerifyTile(typeof (MyComp));
+        }
 
-        //[Test]
-        //[Row(2, 1)]
-        //[Row(1, 2)]
-        //public void Verify_LinkedIn_Tile(int x, int y)
-        //{
-        //    DashboardPage.OpenDashboardPageViaKentico()
-        //       .EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType("Meg on LinkedIn", String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize("Meg on LinkedIn", x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile("Meg on LinkedIn")
-        //       .ClickDone().VerifyTileNotPresent("Meg on LinkedIn");
-        //}
+        [Test]
+        [Row(2, 1)]
+        [Row(1, 2)]
+        public void Verify_LinkedIn_Tile(int x, int y)
+        {
+            DashboardPage.OpenDashboardPageViaKentico()
+                .RemoveTileIfPresent("Meg on LinkedIn")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Meg on LinkedIn", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Meg on LinkedIn", x, y);
+        }
 
 
         //[Test]

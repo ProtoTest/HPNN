@@ -34,19 +34,19 @@ namespace Golem.PageObjects.HPNN
 
         public EditDashboardPage Done()
         {
-            done_add_tile_btn.Click();
+            done_add_tile_btn.WaitUntil().Visible().Click();
             return new EditDashboardPage();
         }
 
         public PersonalizeWeatherPage RemoveLocation()
         {
-            RemoveButton.Click();
+            RemoveButton.WaitUntil().Visible().Click();
             return this;
         }
 
         public EditDashboardPage ClickAddMyTile()
         {
-            done_add_tile_btn.Click();
+            done_add_tile_btn.WaitUntil().Visible().Click();
             return new EditDashboardPage();
         }
 

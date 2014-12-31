@@ -20,16 +20,22 @@ namespace Golem.PageObjects.HPNN
         public override void WaitForElements()
         {
             FooterContainer.Verify().Present();
-            DisclaimerText.Verify().Visible();
-            PersonalizeLink.Verify().Visible();
-            AboutHPNNLink.Verify().Visible();
-            ArchiveLink.Verify().Visible();
-            EditorialCorrectionLink.Verify().Visible();
-            ContactUsLink.Verify().Visible();
-            MeetTheTeamLink.Verify().Visible();
-            RSSLink.Verify().Visible();
-            HPCopyRight.Verify().Visible();
+            
                
         }
+
+        public void VerifyAllFooterPresent()
+        {
+            FooterContainer.FindElement(DisclaimerText).Verify().Visible();
+            // FooterContainer.FindElement(PersonalizeLink).Verify().Visible();
+            FooterContainer.FindElement(AboutHPNNLink).Verify().Visible();
+            FooterContainer.FindElement(ArchiveLink).Verify().Visible();
+            FooterContainer.FindElement(EditorialCorrectionLink).Verify().Visible();
+            FooterContainer.FindElement(ContactUsLink).Verify().Visible();
+            FooterContainer.FindElement(MeetTheTeamLink).Verify().Visible();
+            FooterContainer.FindElement(RSSLink).Verify().Visible();
+            FooterContainer.FindElement(HPCopyRight).Verify().Visible();
+        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace Golem.PageObjects.HPNN
     public class DashboardPage : BasePageObject
     {
        // When default tiles are established, add 'em here
- 
+        public LoadingPanel loading = new LoadingPanel();
         public Header Header = new Header();
         public Footer Footer = new Footer();
         public TutorialOverview tutorial = new TutorialOverview();
@@ -82,8 +82,7 @@ namespace Golem.PageObjects.HPNN
 
         public override void WaitForElements()
         {
-            
-            LoadingAnimation.WaitUntil().Not().Visible();
+           
             Header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
             RemoveTileDropdown.Verify().Not().Visible();
@@ -148,6 +147,12 @@ namespace Golem.PageObjects.HPNN
              
              Activator.CreateInstance(type);
             }
+            return this;
+        }
+
+        public DashboardPage VerifyTile(Type type)
+        {
+            Activator.CreateInstance(type);
             return this;
         }
 

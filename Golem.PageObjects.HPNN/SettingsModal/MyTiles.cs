@@ -84,7 +84,10 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             {
                 type = "quick-link-for-sales";
             }
-            
+            else if (type.Equals("MyComp"))
+            {
+                type = "icon-My Comp";
+            }
             
             
 
