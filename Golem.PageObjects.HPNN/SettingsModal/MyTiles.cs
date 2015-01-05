@@ -13,15 +13,10 @@ namespace Golem.PageObjects.HPNN.SettingsModal
         Element PageHeading_Label = new Element("My Tiles Heading", ByE.Text("My Tiles"));
         public Element PersonalizeButton = new Element("PersonalizeButton", By.Id("config-btn"));
 
-        public Element ButtonForTileType(string name)
-        {
-            return new Element(By.XPath("//div[contains(@id,'"+name+"')]"));
-        }
-
-        public Element ButtonForSize(string size)
-        {
-            return new Element(By.XPath("//li[contains(@class,'"+size+"')]"));
-        }
+        public Element ButtonForTileType= new Element(By.XPath("//div[contains(@id,'{0}')]"));
+    
+        public Element ButtonForSize  = new Element(By.XPath("//li[contains(@class,'{0}')]"));
+        
 
         public EditDashboardPage Personalize()
         {
@@ -94,15 +89,15 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             }
             
 
-            ButtonForTileType(type).WaitUntil().Visible().Click();
-            ButtonForSize(size).WaitUntil().Visible().Click();
+            ButtonForTileType.WithParam(type).WaitUntil().Visible().Click();
+            ButtonForSize.WithParam(size).WaitUntil().Visible().Click();
             return new EditDashboardPage();
         }
 
         public EditDashboardPage AddWeatherTile(string size, string location)
         {
-            ButtonForTileType("Weather").WaitUntil().Visible().Click();
-            ButtonForSize(size).WaitUntil().Visible().Click();
+            ButtonForTileType.WithParam("Weather").WaitUntil().Visible().Click();
+            ButtonForSize.WithParam(size).WaitUntil().Visible().Click();
             PersonalizeWeatherPage personalize_weather = new PersonalizeWeatherPage();
             personalize_weather.EnterLocation(location).ClickAddMyTile();
 
@@ -111,8 +106,8 @@ namespace Golem.PageObjects.HPNN.SettingsModal
 
         public EditDashboardPage AddStockQuoteTile(string symbol, string size)
         {
-            ButtonForTileType("Stock").WaitUntil().Visible().Click();
-            ButtonForSize(size).WaitUntil().Visible().Click();
+            ButtonForTileType.WithParam("Stock").WaitUntil().Visible().Click();
+            ButtonForSize.WithParam(size).WaitUntil().Visible().Click();
 
             symbolField.WaitUntil().Visible().SendKeys(symbol);
             Thread.Sleep(2000);
