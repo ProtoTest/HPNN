@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F70A6B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoTest.Golem", "..\..\..\Desktop\GitHub\ProtoTest.Golem\ProtoTest.Golem\ProtoTest.Golem.csproj", "{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{384203C1-2219-4D58-B815-1C5F31647AE0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
