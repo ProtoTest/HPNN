@@ -15,7 +15,7 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage LoginAs(string username, string password)
         {
-            ClickHereLink.Click();
+            ClickHereLink.WaitUntil().Visible().Click();
             LoginField.SendKeys(username);
             PasswordField.SendKeys(password);
             SignInButton.Click();
