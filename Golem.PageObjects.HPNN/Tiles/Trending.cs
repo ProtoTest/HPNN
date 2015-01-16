@@ -18,8 +18,8 @@ namespace Golem.PageObjects.HPNN.Tiles
         public override void WaitForElements()
         {
             Container.FindElement(TileTitle).Verify().Text("Trending Today");
-            Container.FindElement(Image).Verify().Visible();
-            Container.FindElement(Link).Verify().Visible();
+            Container.FindElement(Image).Verify().Present();
+            Container.FindElement(Link).Verify().Present();
         }
 
       

@@ -17,8 +17,8 @@ namespace Golem.PageObjects.HPNN
     {
        // When default tiles are established, add 'em here
        // public LoadingPanel loading = new LoadingPanel();
-        public Header Header;
-        public Footer Footer;
+        public Header Header = new Header();
+        public Footer Footer = new Footer();
         public TutorialOverview tutorial = new TutorialOverview();
        // public Marquee marquee = new Marquee();
         public Element mainForm = new Element("Main form", By.Id("form"));
@@ -88,9 +88,7 @@ namespace Golem.PageObjects.HPNN
         public override void WaitForElements()
         {
             LoadingAnimation.WaitUntil(60).Not().Visible();
-            Header = new HPNN.Header();
-            Footer = new HPNN.Footer();
-            Header.WaitForElements();
+            //Header.WaitForElements();
             PersonalNewsTile.Verify().Visible();
             RemoveTileDropdown.Verify().Not().Visible();
         }

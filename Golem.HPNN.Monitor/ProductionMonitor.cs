@@ -53,12 +53,12 @@ namespace Golem.HPNN.Monitor
                 start = actions[startIndex]._time;
                 end = actions[endIndex]._time;
                 difference = end.Subtract(start);
-                TestLog.WriteLine(actions[endIndex].name + " : " + difference);
+                Common.Log(actions[endIndex].name + " : " + difference);
             }
             start = actions[0]._time;
             end = actions[actions.Count - 1]._time;
             difference = end.Subtract(start);
-            TestLog.WriteLine("All Actions : " + difference);
+            Common.Log("All Actions : " + difference);
             TestLog.End();
         }
 
@@ -84,7 +84,7 @@ namespace Golem.HPNN.Monitor
             };
             string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
             string password = Config.GetConfigValue("AdminPassword", "Sanders76");
-            SSOLoginPage.OpenSSOLoginPage(env)
+            OpenPage<SSOLoginPage>(env)
                   .LoginAs(username, password)
                 .VerifyTiles(types);
 
