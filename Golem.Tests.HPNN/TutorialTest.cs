@@ -17,8 +17,8 @@ namespace Golem.Tests.HPNN
      //   [Parallelizable]
         public void TestTUtorialSteps()
         {
-            string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
-           string password = Config.GetConfigValue("SalesPassword", "asdf");
+            string username = "cbower";
+            string password = "sanders";
             KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
                 .LoginAs(username, password)
                 .tutorial.VerifyStepCount("1")

@@ -97,6 +97,7 @@
     <Compile Include="SettingsModal\Sidebar.cs" />
     <Compile Include="SettingsModal\MyTiles.cs" />
     <Compile Include="SettingsModal\YourInformation.cs" />
+    <Compile Include="SSOLoginPage.cs" />
     <Compile Include="Tiles\AccountCompetitorNews.cs" />
     <Compile Include="Tiles\AccountNews.cs" />
     <Compile Include="Tiles\BaseTile.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Tiles\MostLiked.cs" />
     <Compile Include="Tiles\MostRead.cs" />
     <Compile Include="Tiles\MostShared.cs" />
+    <Compile Include="Tiles\PaginationControls.cs" />
     <Compile Include="Tiles\SalesEssentialsHeadlines.cs" />
     <Compile Include="Tiles\SalesQuickLinks.cs" />
     <Compile Include="Tiles\Stock.cs" />

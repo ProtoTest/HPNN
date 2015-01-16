@@ -21,14 +21,15 @@ namespace Golem.PageObjects.HPNN
         public override void WaitForElements()
         {
             Container.FindElement(SiteTitle_Label).Verify().Present();
+            Container.FindElement(Search_Field).Verify().Present();
+            Container.FindElement(User_Dropdown).Verify().Present();
+            Container.FindElement(HP_Logo_Link).Verify().Present();
         }
 
         public void VerifyAllHeaderElementsPresent()
         {
 
-            Container.FindElement(Search_Field).Verify().Present();
-            Container.FindElement(User_Dropdown).Verify().Present();
-            Container.FindElement(HP_Logo_Link).Verify().Present();
+            
         }
     }
 }

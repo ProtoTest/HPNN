@@ -9,6 +9,7 @@ using Golem.PageObjects.HPNN;
 using Golem.PageObjects.HPNN.Tiles;
 using MbUnit.Framework;
 using OpenQA.Selenium;
+using Gallio.Framework;
 
 namespace Golem.Tests.HPNN
 {
@@ -16,29 +17,41 @@ namespace Golem.Tests.HPNN
     public class SmokeTest : WebDriverTestBase
     {
         string env = Config.GetConfigValue("EnvUrl", "http://staging.hpnn.hp.com");
+        
+        [Test, Category("Smoke Test")]
+        public void Global_Admin_Default_Tiles()
+        {
+            Type[] types =
+            {
+                typeof(YourPersonalNews),typeof(InTheNews),typeof(Stock),typeof(SalesEssentialsHeadlines),
+                typeof(AccountNews),typeof(AccountCompetitorNews),typeof(MostShared),typeof(MostLiked)
+                ,typeof(InnovationShowcase),typeof(Trending),typeof(MegOnLinkedIn),typeof(KeyDates)
+            };
+            string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
+            string password = Config.GetConfigValue("SalesPassword", "Sanders76");
+            KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAsProducer(username, password)
+                .OpenDashoard(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .VerifyTiles(types);
 
-        //[Test, Category("Smoke Test")]
-        //public void Some_Test()
-        //{
-            
-        //    KenticoLoginPage.OpenKenticoLoginPage(env)
-        //        .LoginAs("cbower", "sanders")
-        //        .OpenDashoard(env).EnterSettings().Enter_Tiles();
-        //}
-  
+
+        }
+
+
         [Test, Category("Smoke Test")]
         public void Sales_User_Default_Tiles()
         {
            Type[] types =
             {
-                typeof(YourPersonalNews),typeof(InTheNews),typeof(Stock),typeof(SFDCPipeline),typeof(SalesEssentialsHeadlines),
+                typeof(YourPersonalNews),typeof(InTheNews),typeof(Stock),typeof(SalesEssentialsHeadlines),
                 typeof(AccountNews),typeof(AccountCompetitorNews),typeof(HPSalesNow),typeof(MyComp),typeof(SalesQuickLinks),typeof(CurrentFYPipeline)
             };
            string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
            string password = Config.GetConfigValue("SalesPassword", "asdf");
-            KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
-                .LoginAs(username, password)
-               .VerifyTiles(types);
+           KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+               .LoginAs(username, password).VerifyTiles(types);
+
+           
         }
 
         [Test, Category("Smoke Test")]
@@ -57,5 +70,7 @@ namespace Golem.Tests.HPNN
                 .VerifyTiles(types);
         }
 
+       
+     
     }
 }

@@ -17,8 +17,6 @@ namespace Golem.PageObjects.HPNN
         public DashboardPage OpenDashoard(string env)
         {
             driver.Navigate().GoToUrl(env);
-            Thread.Sleep(4000);
-            driver.Navigate().Refresh();
             return new DashboardPage();
         }
 
