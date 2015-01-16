@@ -84,7 +84,7 @@ namespace Golem.HPNN.Monitor
             };
             string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
             string password = Config.GetConfigValue("AdminPassword", "Sanders76");
-            OpenPage<SSOLoginPage>(env)
+            SSOLoginPage.OpenSSOLoginPage(env)
                   .LoginAs(username, password)
                 .VerifyTiles(types);
 
