@@ -19,7 +19,7 @@ using OpenQA.Selenium.Remote;
 namespace Golem.HPNN.Monitor
 {
     [Parallelizable]
-    public class ProductionMonitor : WebDriverTestBase
+    public class RefreshDashboardMonitor : WebDriverTestBase
     {
         
         string env = Config.GetConfigValue("EnvUrl", "http://hpnn.hp.com");
@@ -88,7 +88,7 @@ namespace Golem.HPNN.Monitor
         [Parallelizable]
         [Test, Category("Smoke Test")]
         [Timeout(0)]
-        public void Reconnect_And_Reload_Dashboard()
+        public void Reconnect_To_Browser_And_Reload_Dashboard()
         {
             Config.Settings.runTimeSettings.HighlightFoundElements = false;
             Config.Settings.reportSettings.commandLogging = true;

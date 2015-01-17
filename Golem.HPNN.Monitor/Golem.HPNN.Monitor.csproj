@@ -78,7 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductionMonitor.cs" />
+    <Compile Include="LoginDashboardMonitor.cs" />
+    <Compile Include="RefreshDashboardMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
