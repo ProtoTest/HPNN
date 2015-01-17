@@ -16,8 +16,8 @@ namespace Golem.PageObjects.HPNN.Tiles
 
         public override void WaitForElements()
         {
-            Container.FindElement(Temperature).Verify().Visible();
-            Container.FindElement(Location).Verify().Visible();
+            Container.FindElement(Temperature).Verify().Present();
+            Container.FindElement(Location).Verify().Present();
         }
     }
 }

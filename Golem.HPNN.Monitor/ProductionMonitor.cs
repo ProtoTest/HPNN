@@ -9,7 +9,12 @@ using Golem.PageObjects.HPNN;
 using Golem.PageObjects.HPNN.Tiles;
 using MbUnit.Framework;
 using OpenQA.Selenium;
+using System.Threading;
 using Gallio.Framework;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 
 namespace Golem.HPNN.Monitor
 {
@@ -28,30 +33,16 @@ namespace Golem.HPNN.Monitor
 
         public void PrintCondensedActionTimings(ActionList actionList)
         {
+            actionList.RemoveDuplicateEntries();
             var actions = actionList.actions;
             TestLog.BeginSection("Test Action Timings:");
             DateTime start;
             DateTime end;
             TimeSpan difference;
-            for (int i = 1; i < actions.Count-1; i++)
+            for (int i = 1; i < actions.Count; i++)
             {
                 var startIndex = i - 1;
                 var endIndex = i;
-                string endActionName = actions[endIndex].name;
-                for (var j = endIndex + 1; j < actions.Count - 1; j++)
-                {
-                    string thisActionName = actions[j].name;
-                    if (thisActionName != endActionName){
-                        break;
-                    }
-                    else
-                    {
-                        endIndex = j;
-                        i = j;
-                    }
-
-                }
-                
                 start = actions[startIndex]._time;
                 end = actions[endIndex]._time;
                 difference = end.Subtract(start);
@@ -60,17 +51,30 @@ namespace Golem.HPNN.Monitor
             start = actions[0]._time;
             end = actions[actions.Count - 1]._time;
             difference = end.Subtract(start);
-            Assert.IsTrue(difference < TimeSpan.FromSeconds(60), "The test failed as it took over 60 seconds to execute, please watch the video to confirm");
             
             Common.Log("All Actions : " + difference);
             TestLog.End();
         }
 
-        [FixtureInitializer]
+        [SetUp]
         public void setup()
         {
-            Config.Settings.runTimeSettings.HighlightFoundElements = false;
-          //  WebDriverTestBase.defaultFrame = new Element(By.Id("iframe_hp"));
+            try
+            {
+                System.Uri uri = new System.Uri("http://localhost:7055/hub");
+                driver = new EventedWebDriver(new ScreenshotRemoteWebDriver(uri, DesiredCapabilities.Firefox())).driver;
+                Common.Log("Connecting to an existing Browser");
+            }
+            catch (Exception e)
+            {
+                driver = new WebDriverBrowser().LaunchBrowser(WebDriverBrowser.Browser.Firefox);
+                Common.Log("Browser was closed, launching a new browser and logging in ");
+                string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
+                string password = Config.GetConfigValue("AdminPassword", "Sanders76");
+                OpenPage<SSOLoginPage>(env)
+                    .LoginAs(username, password)
+                    .WaitForLoadingAnimationToVanish();
+            }
         }
 
         [TearDown]
@@ -83,9 +87,11 @@ namespace Golem.HPNN.Monitor
 
         [Parallelizable]
         [Test, Category("Smoke Test")]
-        public void Global_Admin_Default_Tiles()
+        [Timeout(0)]
+        public void Reconnect_And_Reload_Dashboard()
         {
-           
+            Config.Settings.runTimeSettings.HighlightFoundElements = false;
+            Config.Settings.reportSettings.commandLogging = true;
             Type[] types =
             {
                 typeof(Marquee),typeof(YourPersonalNews),typeof(InTheNews),typeof(Stock),typeof(SalesEssentialsHeadlines),
@@ -94,14 +100,10 @@ namespace Golem.HPNN.Monitor
                 typeof(HPUniversity),typeof(MostRead),typeof(MostDiscussed),typeof(HPSalesNow),typeof(JobsAtHp),
                 typeof(Stock),typeof(Weather)
             };
-            string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
-            string password = Config.GetConfigValue("AdminPassword", "Sanders76");
-            OpenPage<SSOLoginPage>(env)
-                  .LoginAs(username, password)
-                  .WaitForLoadingAnimationToVanish()
+            DashboardPage dashboard = new DashboardPage();
+                dashboard.RefreshDashboardPage()
+                .WaitForLoadingAnimationToVanish()
                 .VerifyTiles(types);
-
-
         }
 
     }

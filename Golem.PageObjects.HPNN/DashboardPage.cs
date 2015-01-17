@@ -17,8 +17,8 @@ namespace Golem.PageObjects.HPNN
     {
        // When default tiles are established, add 'em here
        // public LoadingPanel loading = new LoadingPanel();
-        public Header Header = new Header();
-        public Footer Footer = new Footer();
+        public Header Header{get{ return new Header();}}
+        public Footer Footer { get { return new Footer();} }
         public TutorialOverview tutorial = new TutorialOverview();
        // public Marquee marquee = new Marquee();
         public Element mainForm = new Element("Main form", By.Id("form"));
@@ -34,8 +34,6 @@ namespace Golem.PageObjects.HPNN
         {
             return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[contains(text(),'" + title + "')]]/div"));
         }
-
-
 
         public Element RemoveButtonForTile(string title)
         {
@@ -174,5 +172,21 @@ namespace Golem.PageObjects.HPNN
                 return EnterSettings().Enter_Tiles().Personalize().RemoveTile(title).ClickDone();
             return this;
         }
+
+        public DashboardPage WaitForTime(TimeSpan time)
+        {
+            Common.Log("Sleeping for " + time);
+            System.Threading.Thread.Sleep(time);
+            return new DashboardPage();
+        }
+
+        public DashboardPage RefreshDashboardPage()
+        {
+            driver.Navigate().Refresh();
+            return new DashboardPage();
+        }
+
+
+
     }
 }
