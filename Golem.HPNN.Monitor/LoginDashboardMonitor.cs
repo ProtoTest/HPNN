@@ -56,22 +56,6 @@ namespace Golem.HPNN.Monitor
             TestLog.End();
         }
 
-        [SetUp]
-        public void setup()
-        {
-            try
-            {
-                System.Uri uri = new System.Uri("http://localhost:7055/hub");
-                driver = new EventedWebDriver(new ScreenshotRemoteWebDriver(uri, DesiredCapabilities.Firefox())).driver;
-                Common.Log("Connecting to an existing Browser");
-            }
-            catch (Exception e)
-            {
-                driver = new WebDriverBrowser().LaunchBrowser(WebDriverBrowser.Browser.Firefox);
-                Common.Log("Browser was closed, launching a new browser and logging in ");
-              
-            }
-        }
 
         [TearDown]
         public void teardown()

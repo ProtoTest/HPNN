@@ -56,6 +56,12 @@ namespace Golem.HPNN.Monitor
             TestLog.End();
         }
 
+        [FixtureInitializer]
+        public void initialize()
+        {
+            Config.Settings.runTimeSettings.LaunchBrowser = false;
+        }
+
         [SetUp]
         public void setup()
         {
