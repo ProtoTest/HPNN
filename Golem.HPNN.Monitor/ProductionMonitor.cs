@@ -60,6 +60,8 @@ namespace Golem.HPNN.Monitor
             start = actions[0]._time;
             end = actions[actions.Count - 1]._time;
             difference = end.Subtract(start);
+            Assert.IsTrue(difference < TimeSpan.FromSeconds(60), "The test failed as it took over 60 seconds to execute, please watch the video to confirm");
+            
             Common.Log("All Actions : " + difference);
             TestLog.End();
         }
