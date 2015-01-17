@@ -27,6 +27,8 @@ namespace Golem.PageObjects.HPNN
         public static SSOLoginPage OpenSSOLoginPage(string env)
         {
             WebDriverTestBase.driver.Navigate().GoToUrl(env);
+            if(WebDriverTestBase.testData.browserInfo.browser == WebDriverBrowser.Browser.IE)
+                WebDriverTestBase.driver.Navigate().GoToUrl(env);
             return new SSOLoginPage();
         }
 

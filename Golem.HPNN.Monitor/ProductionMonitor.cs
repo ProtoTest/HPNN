@@ -13,6 +13,7 @@ using Gallio.Framework;
 
 namespace Golem.HPNN.Monitor
 {
+    [Parallelizable]
     public class ProductionMonitor : WebDriverTestBase
     {
 
@@ -20,7 +21,8 @@ namespace Golem.HPNN.Monitor
 
         public void LogVideo()
         {
-            TestLog.EmbedVideo("Video_" + Common.GetShortTestName(90), testData.recorder.Video);
+            if(testData.recorder.Video!=null)
+                TestLog.EmbedVideo("Video_" + Common.GetShortTestName(90), testData.recorder.Video);
         }
 
 
@@ -70,7 +72,7 @@ namespace Golem.HPNN.Monitor
         }
 
 
-
+        [Parallelizable]
         [Test, Category("Smoke Test")]
         public void Global_Admin_Default_Tiles()
         {
@@ -86,6 +88,7 @@ namespace Golem.HPNN.Monitor
             string password = Config.GetConfigValue("AdminPassword", "Sanders76");
             OpenPage<SSOLoginPage>(env)
                   .LoginAs(username, password)
+                  .WaitForLoadingAnimationToVanish()
                 .VerifyTiles(types);
 
 

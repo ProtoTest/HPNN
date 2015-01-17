@@ -81,16 +81,16 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage WaitForLoadingAnimationToVanish()
         {
-            LoadingAnimation.WaitUntil().Not().Visible();
+            LoadingAnimation.WaitUntil(60).Not().Visible();
             return new DashboardPage();
         }
 
         public override void WaitForElements()
         {
-            LoadingAnimation.WaitUntil(60).Not().Visible();
+            //LoadingAnimation.WaitUntil(60).Not().Visible();
             //Header.WaitForElements();
-            PersonalNewsTile.Verify().Visible();
-            RemoveTileDropdown.Verify().Not().Visible();
+           // PersonalNewsTile.Verify().Visible();
+           // RemoveTileDropdown.Verify().Not().Visible();
         }
 
         public List<String> GetAllTileTitles()
