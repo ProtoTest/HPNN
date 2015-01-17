@@ -64,6 +64,12 @@ namespace Golem.HPNN.Monitor
             TestLog.End();
         }
 
+        [FixtureInitializer]
+        public void setup()
+        {
+          //  WebDriverTestBase.defaultFrame = new Element(By.Id("iframe_hp"));
+        }
+
         [TearDown]
         public void teardown()
         {

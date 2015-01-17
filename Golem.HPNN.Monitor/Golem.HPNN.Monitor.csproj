@@ -89,6 +89,9 @@
     <None Include="Proxy\browsermob-proxy-2.0-beta-8-bin.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Proxy\browsermob-proxy-2.0-beta-9-bin.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="chromedriver.exe" />
