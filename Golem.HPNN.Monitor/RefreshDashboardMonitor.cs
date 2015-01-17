@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace Golem.HPNN.Monitor
             DateTime start;
             DateTime end;
             TimeSpan difference;
+            string rowText = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
             for (int i = 1; i < actions.Count; i++)
             {
                 var startIndex = i - 1;
@@ -47,13 +49,31 @@ namespace Golem.HPNN.Monitor
                 end = actions[endIndex]._time;
                 difference = end.Subtract(start);
                 Common.Log(actions[endIndex].name + " : " + difference);
+                rowText += "," + actions[endIndex].name + ":" + difference;
             }
             start = actions[0]._time;
             end = actions[actions.Count - 1]._time;
             difference = end.Subtract(start);
             
             Common.Log("All Actions : " + difference);
+            rowText += "All:" + difference + Environment.NewLine;
+            WriteToCSV(rowText);
             TestLog.End();
+        }
+
+        public void WriteToCSV(string rowDetails)
+        {
+            string newFileName = Config.GetConfigValue("CSVPath", Directory.GetCurrentDirectory().ToString() + "\\" +  TestContext.CurrentContext.Test.Name + ".csv");
+
+            //if (!File.Exists(newFileName))
+            //{
+            //    string clientHeader = "Client Name(ie. Billto_desc)" + "," + "Mid_id,billing number(ie billto_id)" + "," + "business unit id" + Environment.NewLine;
+
+            //    File.WriteAllText(newFileName, clientHeader);
+            //}
+
+            File.AppendAllText(newFileName, rowDetails);
+            Common.Log("Appended results to file : " + newFileName);
         }
 
         [FixtureInitializer]
