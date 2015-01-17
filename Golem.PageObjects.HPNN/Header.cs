@@ -22,7 +22,7 @@ namespace Golem.PageObjects.HPNN
         {
             //Container.FindElement(SiteTitle_Label).Verify().Present();
             //Container.FindElement(Search_Field).Verify().Present();
-            Container.FindElement(User_Dropdown).Verify(60).Present();
+            Container.FindElement(User_Dropdown).Verify().Present();
             //Container.FindElement(HP_Logo_Link).Verify().Present();
         }
 

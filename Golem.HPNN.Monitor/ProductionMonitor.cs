@@ -67,6 +67,7 @@ namespace Golem.HPNN.Monitor
         [FixtureInitializer]
         public void setup()
         {
+            Config.Settings.runTimeSettings.HighlightFoundElements = false;
           //  WebDriverTestBase.defaultFrame = new Element(By.Id("iframe_hp"));
         }
 
@@ -82,6 +83,7 @@ namespace Golem.HPNN.Monitor
         [Test, Category("Smoke Test")]
         public void Global_Admin_Default_Tiles()
         {
+           
             Type[] types =
             {
                 typeof(Marquee),typeof(YourPersonalNews),typeof(InTheNews),typeof(Stock),typeof(SalesEssentialsHeadlines),
