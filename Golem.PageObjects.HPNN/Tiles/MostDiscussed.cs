@@ -22,8 +22,8 @@ namespace Golem.PageObjects.HPNN.Tiles
         {
             Container.FindElement(TileTitle).Verify().Visible();
             Container.FindElement(Image).Verify().Present();
-            Container.FindElement(Link).Verify().Present();
-            Container.FindElement(Number).Verify().Present();
+            //Container.FindElement(Link).Verify().Present();
+            //Container.FindElement(Number).Verify().Present();
             //PaginationControls = new PaginationControls(Container, 4);
 
         }

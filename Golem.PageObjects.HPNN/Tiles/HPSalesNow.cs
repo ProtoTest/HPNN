@@ -24,10 +24,10 @@ namespace Golem.PageObjects.HPNN.Tiles
         {
             Container.FindElement(TileTitle).Verify().Text("HP Sales Now");
             Container.FindElement(InfoButton).Verify().Visible();
-            Container.FindElement(HotTopicsDropdown).Verify().Visible();
-            Container.FindElement(ItemImage).Verify().Present();
-            Container.FindElement(ItemTitle).Verify().Present();
-            Container.FindElement(ItemNumber).Verify().Present();
+            //Container.FindElement(HotTopicsDropdown).Verify().Visible();
+            //Container.FindElement(ItemImage).Verify().Present();
+            //Container.FindElement(ItemTitle).Verify().Present();
+            //Container.FindElement(ItemNumber).Verify().Present();
         }
     }
 }

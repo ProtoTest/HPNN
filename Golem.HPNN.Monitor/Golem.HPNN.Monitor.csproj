@@ -59,9 +59,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="ProtoTest.Golem">
-      <HintPath>..\packages\ProtoTest.Golem.1.2.1.2\lib\net40\ProtoTest.Golem.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -99,6 +96,10 @@
     <Content Include="phantomjs.exe" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ProtoTest.Golem\ProtoTest.Golem\ProtoTest.Golem.csproj">
+      <Project>{dabfc1cb-7c18-4ac7-afa2-91c453e9e266}</Project>
+      <Name>ProtoTest.Golem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Golem.PageObjects.HPNN\Golem.PageObjects.HPNN.csproj">
       <Project>{996f61c5-7f02-46d6-ac7b-60dbad04128c}</Project>
       <Name>Golem.PageObjects.HPNN</Name>

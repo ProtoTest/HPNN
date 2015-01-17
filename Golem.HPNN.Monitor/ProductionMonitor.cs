@@ -16,13 +16,13 @@ namespace Golem.HPNN.Monitor
     [Parallelizable]
     public class ProductionMonitor : WebDriverTestBase
     {
-
+        
         string env = Config.GetConfigValue("EnvUrl", "http://hpnn.hp.com");
 
         public void LogVideo()
         {
             if(testData.recorder.Video!=null)
-                TestLog.EmbedVideo("Video_" + Common.GetShortTestName(90), testData.recorder.Video);
+                TestLog.EmbedVideo("FLV_" + Common.GetShortTestName(90), testData.recorder.Video);
         }
 
 
