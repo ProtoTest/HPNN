@@ -147,8 +147,15 @@ namespace Golem.PageObjects.HPNN
         {
             foreach (var type in types)
             {
+                try
+                {
+                    Activator.CreateInstance(type);
+                }
+                catch (Exception e)
+                {
+                    throw e.InnerException;
+                }
              
-             Activator.CreateInstance(type);
             }
             return this;
         }

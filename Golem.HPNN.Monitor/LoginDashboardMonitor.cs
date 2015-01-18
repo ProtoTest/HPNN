@@ -19,51 +19,10 @@ using OpenQA.Selenium.Remote;
 namespace Golem.HPNN.Monitor
 {
     [Parallelizable]
-    public class LoginToDashboardMonitor : WebDriverTestBase
+    public class LoginToDashboardMonitor : MonitorBaseTest
     {
         
         string env = Config.GetConfigValue("EnvUrl", "http://hpnn.hp.com");
-
-        public void LogVideo()
-        {
-            if(testData.recorder.Video!=null)
-                TestLog.EmbedVideo("FLV _" + Common.GetShortTestName(90), testData.recorder.Video);
-        }
-
-
-        public void PrintCondensedActionTimings(ActionList actionList)
-        {
-            actionList.RemoveDuplicateEntries();
-            var actions = actionList.actions;
-            TestLog.BeginSection("Test Action Timings:");
-            DateTime start;
-            DateTime end;
-            TimeSpan difference;
-            for (int i = 1; i < actions.Count; i++)
-            {
-                var startIndex = i - 1;
-                var endIndex = i;
-                start = actions[startIndex]._time;
-                end = actions[endIndex]._time;
-                difference = end.Subtract(start);
-                Common.Log(actions[endIndex].name + " : " + difference);
-            }
-            start = actions[0]._time;
-            end = actions[actions.Count - 1]._time;
-            difference = end.Subtract(start);
-            
-            Common.Log("All Actions : " + difference);
-            TestLog.End();
-        }
-
-
-        [TearDown]
-        public void teardown()
-        {
-            PrintCondensedActionTimings(testData.actions);
-            LogVideo();
-        }
-
 
         [Parallelizable]
         [Test, Category("Smoke Test")]

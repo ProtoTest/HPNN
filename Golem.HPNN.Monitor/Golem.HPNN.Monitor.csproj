@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginDashboardMonitor.cs" />
+    <Compile Include="MonitorBaseTest.cs" />
     <Compile Include="RefreshDashboardMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
