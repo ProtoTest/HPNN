@@ -59,6 +59,10 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ProtoTest.Golem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ProtoTest.Golem.1.2.2.0\lib\net40\ProtoTest.Golem.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -78,6 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SaveUserProfile.cs" />
     <Compile Include="LoginDashboardMonitor.cs" />
     <Compile Include="MonitorBaseTest.cs" />
     <Compile Include="RefreshDashboardMonitor.cs" />
@@ -88,25 +93,18 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <Content Include="IEDriverServer.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Proxy\browsermob-proxy-2.0-beta-9-bin.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Proxy\browsermob-proxy-2.0-beta-9-bin.zip" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chromedriver.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ProtoTest.Golem\ProtoTest.Golem\ProtoTest.Golem.csproj">
-      <Project>{dabfc1cb-7c18-4ac7-afa2-91c453e9e266}</Project>
-      <Name>ProtoTest.Golem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Golem.PageObjects.HPNN\Golem.PageObjects.HPNN.csproj">
       <Project>{996f61c5-7f02-46d6-ac7b-60dbad04128c}</Project>
       <Name>Golem.PageObjects.HPNN</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver.exe" />
+    <Content Include="IEDriverServer.exe" />
+    <Content Include="phantomjs.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
