@@ -33,6 +33,7 @@ namespace Golem.HPNN.Monitor
             Config.Settings.reportSettings.commandLogging = true;
             Type[] types =
             {
+
                 typeof(Marquee),typeof(YourPersonalNews),typeof(InTheNews),typeof(Stock),typeof(SalesEssentialsHeadlines),
                 typeof(AccountNews),typeof(AccountCompetitorNews),typeof(MostShared),typeof(MostLiked)
                 ,typeof(InnovationShowcase),typeof(Trending),typeof(MegOnLinkedIn),typeof(KeyDates),
