@@ -7,8 +7,8 @@
     <ProjectGuid>{ED94C414-86CE-4FFF-A684-76FC049BE41F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Golem.Home.HPNN.Tests</RootNamespace>
-    <AssemblyName>Golem.Home.HPNN.Tests</AssemblyName>
+    <RootNamespace>Golem.Home.HPNN.Monitor</RootNamespace>
+    <AssemblyName>Golem.Home.HPNN.Monitor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
