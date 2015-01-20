@@ -80,7 +80,8 @@ namespace Golem.PageObjects.HPNN
         public DashboardPage WaitForLoadingAnimationToVanish()
         {
             LoadingAnimation.timeoutSec = 1;
-            LoadingAnimation.WaitUntil().Not().Visible();
+            var veri = LoadingAnimation.WaitUntil().Not();
+            veri.Visible();
             return new DashboardPage();
         }
 
