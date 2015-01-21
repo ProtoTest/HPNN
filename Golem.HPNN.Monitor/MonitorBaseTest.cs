@@ -23,7 +23,7 @@ namespace Golem.HPNN.Monitor
 
         public void LogVideo()
         {
-            if (testData.recorder.Video != null)
+            if (testData.recorder != null)
                 TestLog.EmbedVideo("FLV _" + Common.GetShortTestName(90), testData.recorder.Video);
         }
 

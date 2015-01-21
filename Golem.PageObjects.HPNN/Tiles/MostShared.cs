@@ -17,7 +17,7 @@ namespace Golem.PageObjects.HPNN.Tiles
         public override void WaitForElements()
         {
             Container.FindElement(TileTitle).Verify().Text("Most Shared");
-           // Container.FindElement(Link).Verify().Visible();
+            Container.FindElement(Link).Verify().Visible();
         }
     }
 }
