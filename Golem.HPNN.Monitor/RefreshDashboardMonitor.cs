@@ -56,7 +56,7 @@ namespace Golem.HPNN.Monitor
    
         [Parallelizable]
         [Test, Category("Smoke Test")]
-        [Timeout(0)]
+        [Timeout(300)]
         public void Reconnect_To_Browser_And_Reload_Dashboard()
         {
             Config.Settings.runTimeSettings.HighlightFoundElements = false;

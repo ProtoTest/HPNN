@@ -20,6 +20,7 @@ namespace Golem.PageObjects.HPNN.Tiles
 
         public override void WaitForElements()
         {
+            Container.WaitUntil().Present();
             Container.FindElement(MainImage).Verify().Present();
             Container.FindElement(MainTitle).Verify().Present();
             Container.FindElement(BackButton).Verify().Present();

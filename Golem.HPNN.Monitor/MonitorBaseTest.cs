@@ -59,7 +59,7 @@ namespace Golem.HPNN.Monitor
 
         public void WriteToCSV(string rowDetails)
         {
-            string newFileName = Config.GetConfigValue("CSVPath", Directory.GetCurrentDirectory().ToString() + "\\" + TestContext.CurrentContext.Test.Name + ".csv");
+            string newFileName = Config.GetConfigValue("CSVPath", Directory.GetCurrentDirectory().ToString() + "\\" + DateTime.Now.ToString("dd-MM-yy") + "_" + WebDriverTestBase.testData.browserInfo.browser + "_" +  TestContext.CurrentContext.Test.Name + ".csv");
             File.AppendAllText(newFileName, rowDetails);
             Common.Log("Appended results to file : " + newFileName);
         }

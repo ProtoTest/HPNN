@@ -27,6 +27,7 @@ namespace Golem.HPNN.Monitor
         [Parallelizable]
         [Test, Category("Smoke Test")]
         [Timeout(0)]
+        [Repeat(10)]
         public void LoginToDashboard()
         {
             Config.Settings.runTimeSettings.HighlightFoundElements = false;

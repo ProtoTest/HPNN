@@ -5,3 +5,5 @@
 1/18/2015 8:41 AM,SSOLoginPage.LoginAs:00:00:00.6829475,DashboardPage.WaitForLoadingAnimationToVanish:00:00:23.7459837,RefreshDashboardMonitor.Reconnect_To_Browser_And_Reload_Dashboard:-00:00:11.4202396,DashboardPage.RefreshDashboardPage:00:00:01.3219275,DashboardPage.VerifyTiles:00:00:11.4435906,All:00:00:25.7742097
 1/18/2015 4:10 PM,DashboardPage.RefreshDashboardPage:00:00:01.4695696,DashboardPage.WaitForLoadingAnimationToVanish:00:00:08.7591551,DashboardPage.VerifyTiles:00:00:01.9403986,All:00:00:12.1691233
 1/18/2015 5:39 PM,DashboardPage.RefreshDashboardPage:00:00:01.6936919,DashboardPage.WaitForLoadingAnimationToVanish:00:00:06.4812015,DashboardPage.VerifyTiles:00:00:01.8648364,All:00:00:10.0397298
+1/20/2015 9:36 AM,SSOLoginPage.LoginAs:00:00:00.8505226,All:00:00:00.8505226
+1/20/2015 9:51 AM,DashboardPage.RefreshDashboardPage:00:00:01.7704687,DashboardPage.WaitForLoadingAnimationToVanish:00:00:05.5255194,DashboardPage.VerifyTiles:00:00:01.5702262,All:00:00:08.8662143
