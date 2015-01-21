@@ -15,5 +15,11 @@
 1/19/2015 9:04 AM,WebDriverTestBase.OpenPage:00:00:01.2139876,SSOLoginPage.LoginAs:00:00:00.8706700,DashboardPage.WaitForLoadingAnimationToVanish:00:00:07.1536560,DashboardPage.VerifyTiles:00:00:02.1275433,All:00:00:11.3658569
 1/19/2015 9:07 AM,WebDriverTestBase.OpenPage:00:00:01.1649116,SSOLoginPage.LoginAs:00:00:00.9717032,DashboardPage.WaitForLoadingAnimationToVanish:00:00:07.7018564,DashboardPage.VerifyTiles:00:00:01.8903449,All:00:00:11.7288161
 1/20/2015 9:06 AM,WebDriverTestBase.OpenPage:00:00:01.3281567,SSOLoginPage.LoginAs:00:00:01.1825747,DashboardPage.WaitForLoadingAnimationToVanish:00:00:26.2656960,DashboardPage.VerifyTiles:00:00:02.5564809,All:00:00:31.3329083
+<<<<<<< HEAD
 1/20/2015 9:14 AM,WebDriverTestBase.OpenPage:00:00:01.2083449,SSOLoginPage.LoginAs:00:00:01.0127632,DashboardPage.WaitForLoadingAnimationToVanish:00:00:08.3138326,DashboardPage.VerifyTiles:00:00:02.6676077,All:00:00:13.2025484
 1/20/2015 9:37 AM,WebDriverTestBase.OpenPage:00:00:02.1144933,SSOLoginPage.LoginAs:00:00:32.7294784,DashboardPage.WaitForLoadingAnimationToVanish:00:00:02.7068586,DashboardPage.VerifyTiles:00:00:04.9511739,All:00:00:42.5020042
+=======
+1/20/2015 1:06 PM,WebDriverTestBase.OpenPage:00:00:02.7738686,SSOLoginPage.LoginAs:00:00:01.3159982,DashboardPage.WaitForLoadingAnimationToVanish:00:00:01.0295409,All:00:00:05.1194077
+1/20/2015 1:07 PM,WebDriverTestBase.OpenPage:00:00:02.6740417,SSOLoginPage.LoginAs:00:00:03.1788791,DashboardPage.WaitForLoadingAnimationToVanish:00:00:01.5953104,DashboardPage.VerifyTiles:00:00:07.5770735,All:00:00:15.0253047
+1/20/2015 1:08 PM,WebDriverTestBase.OpenPage:00:00:02.6266515,SSOLoginPage.LoginAs:00:00:03.0294588,DashboardPage.WaitForLoadingAnimationToVanish:00:00:02.6763785,DashboardPage.VerifyTiles:00:00:06.7857511,All:00:00:15.1182399
+>>>>>>> 815e460e698223ad5ebcd61e3753a5f7a3bc1446
