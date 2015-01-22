@@ -27,7 +27,7 @@ namespace Golem.HPNN.Monitor
         [Parallelizable]
         [Test, Category("Smoke Test")]
         [Timeout(300)]
-        public void LoginToDashboard()
+        public void LoginMonitorTest()
         {
             string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
             string password = Config.GetConfigValue("AdminPassword", "Sanders76");

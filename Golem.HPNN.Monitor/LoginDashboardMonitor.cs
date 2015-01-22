@@ -25,7 +25,7 @@ namespace Golem.HPNN.Monitor
         string env = Config.GetConfigValue("EnvUrl", "http://hpnn.hp.com");
 
         [Parallelizable]
-        [Test, Category("Smoke Test")]
+        [Test, Category("Monitor")]
         [Timeout(300)]
         public void LoginToDashboard()
         {
