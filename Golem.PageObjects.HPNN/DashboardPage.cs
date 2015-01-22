@@ -164,7 +164,14 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage VerifyTile(Type type)
         {
-            Activator.CreateInstance(type);
+            try
+            {
+                Activator.CreateInstance(type);
+            }
+            catch (Exception e)
+            {
+                throw e.InnerException;
+            }
             return this;
         }
 

@@ -12,12 +12,17 @@ namespace Golem.PageObjects.HPNN.Tiles
     {
         public Element Container = new Element(By.Id("Story-most-shared"));
         public Element TileTitle = new Element(By.ClassName("tile-title"));
-        public Element Link = new Element(By.ClassName("tile-link"));
+        public Element Image = new Element(By.ClassName("tile-image"));
+        public Element Number = new Element(By.ClassName("tile-number"));
+        public Element Text = new Element(By.ClassName("tile-text"));
+
 
         public override void WaitForElements()
         {
             Container.FindElement(TileTitle).Verify().Text("Most Shared");
-            Container.FindElement(Link).Verify().Visible();
+            Container.FindElement(Image).Verify().Present();
+            Container.FindElement(Number).Verify().Present();
+            Container.FindElement(Text).Verify().Present();
         }
     }
 }
