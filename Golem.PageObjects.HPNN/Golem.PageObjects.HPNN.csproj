@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePersonalizeTile.cs" />
+    <Compile Include="BrowserNotSupportedPage.cs" />
     <Compile Include="CmsDeskPage.cs" />
     <Compile Include="DashboardPage.cs" />
     <Compile Include="EditDashboardPage.cs" />

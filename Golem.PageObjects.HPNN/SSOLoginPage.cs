@@ -24,6 +24,8 @@ namespace Golem.PageObjects.HPNN
             return new DashboardPage();
         }
 
+
+
         public static SSOLoginPage OpenSSOLoginPage(string env)
         {
             WebDriverTestBase.driver.Navigate().GoToUrl(env);

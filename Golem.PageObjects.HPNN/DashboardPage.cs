@@ -47,7 +47,10 @@ namespace Golem.PageObjects.HPNN
             return driver.FindElements(By.XPath("//div[@gridster-item='tile']"));
         }
 
-  
+        public BrowserNotSupportedPage RedirectToBrowserNotSupportedPage()
+        {
+            return new BrowserNotSupportedPage();
+        }
          
         public SettingsModal.SettingsModal EnterSettings()
         {
