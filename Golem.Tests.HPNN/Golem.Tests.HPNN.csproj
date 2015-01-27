@@ -83,7 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrowserPageTests.cs" />
+    <Compile Include="BrowserPageTest.cs" />
     <Compile Include="MyFeedsTest.cs" />
     <Compile Include="SmokeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

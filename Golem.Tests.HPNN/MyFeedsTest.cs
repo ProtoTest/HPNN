@@ -12,23 +12,20 @@ namespace Golem.Tests.HPNN
     [TestFixture]
     public class MyFeedsTest : WebDriverTestBase
     {
-        string env = Config.GetConfigValue("EnvUrl", "http://staging.hpnn.hp.com");
+        string env = Config.GetConfigValue("EnvUrl", "http://hpnn.hp.com");
 
-  
+        [Parallelizable]
         [Test, Category("Smoke Test")]
-        public void AddFeed()
+        [Timeout(300)]
+        public void LoginMonitorTest()
         {
-            driver.Navigate().GoToUrl("http://www.google.com");
-            Element test = new Element(By.XPath("//div[text()='{0}']"));
-            test.WithParam("linktext").Click();
-            
-
-            //string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
-            //string password = Config.GetConfigValue("SalesPassword", "asdf");
-            // KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
-            //     .LoginAs(username, password)
-            //    .VerifyTiles(types);
+            string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
+            string password = Config.GetConfigValue("AdminPassword", "Sanders76");
+            SSOLoginPage.OpenSSOLoginPage(env)
+                .LoginAs(username, password)
+                .WaitForLoadingAnimationToVanish().EnterSettings().Enter_NewsFeeds()
         }
+
 
 
     }
