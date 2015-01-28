@@ -30,6 +30,10 @@ namespace Golem.PageObjects.HPNN
         public Element PersonalNewsTile = new Element("Personal News Tile", ByE.Text("Your Personal News"));
         public Element RemoveTileDropdown = new Element("RemoveTile Dropdown", By.XPath("//div[@gridster-item='tile']//div[contains(@class, 'dropdown')]"));
         public Element HPNNLink = new Element(By.LinkText("HP News Now"));
+
+        public YourPersonalNews personalNews = new YourPersonalNews();
+
+
         public Element TileWithTitle(string title)
         {
             return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[contains(text(),'" + title + "')]]/div"));

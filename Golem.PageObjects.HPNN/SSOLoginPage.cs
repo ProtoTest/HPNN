@@ -17,10 +17,13 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage LoginAs(string username, string password)
         {
+            //slowing this down as it appears to fail periodically
+            Config.Settings.runTimeSettings.CommandDelayMs = 200;
             ContinueButton.Click();
             Username.SetText(username);
             Password.SetText(password);
             LogOnButton.Click();
+            Config.Settings.runTimeSettings.CommandDelayMs = 0;
             return new DashboardPage();
         }
 

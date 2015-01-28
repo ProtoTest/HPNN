@@ -24,9 +24,14 @@ namespace Golem.PageObjects.HPNN
         private Element AddRSSField = new Element("AddRssField", By.XPath("//input[@ng-model='RSSCustomFeedUrl']"));
         private Element AddFeedbutton = new Element("AddFeedbUtton", By.XPath("//button[text()='Add Feed']"));
         private Element DoneButton = new Element("DoneButton", By.LinkText("Done"));
-        private Element CloseButton = new Element("CloseButton",By.ClassName("done"));
+        private Element CloseButton = new Element("CloseButton", By.ClassName("close"));
         private Element FeedButton = new Element("FeedButton", By.XPath("//label[text()='{0}']"));
+        private Element UnSelectedFeedButtonForFeed = new Element("FeedButton", By.XPath("//div[.//label[contains(text(),'{0}')] and contains(@class,'unchecked')]"));
+        private Element SelectedFeedButtonForFeed = new Element("FeedButton", By.XPath("//div[.//label[contains(text(),'{0}')] and @class='scroll-box ng-scope checked']"));
+        private Element SelectedFeedButton = new Element("FeedButton", By.XPath("//div[@class='scroll-box ng-scope checked']"));
+
         private Element ErrorMessage = new Element("ErrorMessage", By.XPath("//span[@ng-show='serverMessage']"));
+
 
         public override void WaitForElements()
         {
@@ -39,7 +44,49 @@ namespace Golem.PageObjects.HPNN
             AddFeedbutton.Verify().Present();
             DoneButton.Verify().Present();
             CloseButton.Verify().Present();
+        }
+
+
+
+        public MyFeeds ClearAllFeeds()
+        {
+            var eles = driver.FindElements(SelectedFeedButton.by);
+            foreach (var ele in eles)
+            {
+                ele.Click();
+            }
+                
+            return this;
+        }
+
+        public MyFeeds SelectFeed(string name)
+        {
+            UnSelectedFeedButtonForFeed.WithParam(name).Click();
+            return this;
+        }
+
+        public MyFeeds VerifyFeedSelected(string name)
+        {
+            SelectedFeedButtonForFeed.WithParam(name).Verify().Visible();
+            return this;
+        }
+
+        public MyFeeds UnSelectFeed(string name)
+        {
+            SelectedFeedButtonForFeed.WithParam(name).Click();
+            return this;
+        }
+
+        public MyFeeds VerifyErrorMessageIsPresent(string errorMessage)
+        {
+            ErrorMessage.Verify().Visible().Verify().Text(errorMessage);
+            return this;
+        }
+
+        public MyFeeds VerifyErrorMessageNotPresent()
+        {
             ErrorMessage.Verify().Not().Visible();
+            return this;
         }
 
         public MyFeeds AddFeed(string url)

@@ -15,6 +15,19 @@ namespace Golem.PageObjects.HPNN.Tiles
         public Element RefreshButton = new Element(By.Id("refreshImage"));
         public Element MyFeedsButton = new Element(ByE.Text("My Feeds"));
 
+        public Element ContentItemForFeed = new Element(By.XPath("//li[@class='tile-slide']//p[text()='{0}']"));
+
+        public YourPersonalNews VerifyFeedItemPresent(string name)
+        {
+            ContentItemForFeed.WithParam(name).Verify().Present();
+            return this;
+        }
+
+        public YourPersonalNews VerifyFeedItemNotPresent(string name)
+        {
+            ContentItemForFeed.WithParam(name).Verify().Not().Present();
+            return this;
+        }
 
         public override void WaitForElements()
         {
