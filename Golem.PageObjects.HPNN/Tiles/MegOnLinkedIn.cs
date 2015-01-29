@@ -12,7 +12,7 @@ namespace Golem.PageObjects.HPNN.Tiles
     {
         public Element Container = new Element(By.Id("meg-on-linkedin"));
         public Element TileTitle = new Element(By.ClassName("tile-title"));
-        public Element Image = new Element(By.ClassName("image"));
+        public Element Image = new Element(By.XPath("//*[contains(@class,'image')]"));
         public Element Link = new Element(By.ClassName("tile-link"));
         public Element Text = new Element(By.ClassName("tile-text"));
         public Element PaginationControls = new Element(By.ClassName("standard-carousel-pager-controls"));

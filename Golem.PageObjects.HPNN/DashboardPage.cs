@@ -43,7 +43,7 @@ namespace Golem.PageObjects.HPNN
         {
             Element dropdown = new Element(By.XPath("//div[@gridster-item='tile' and .//h2[contains(text(),'" + title + "')]]//div[contains(@class, 'dropdown')]/a"));
             dropdown.Click();
-            return new Element(By.XPath("//div[@gridster-item='tile' and .//h2[contains(text(),'" + title + "']]//li[@id='tile-delete']/a"));
+            return new Element(By.LinkText("DELETE")).GetVisibleElement();
         }
 
         public IReadOnlyCollection<IWebElement> AllTilesOnPage()
