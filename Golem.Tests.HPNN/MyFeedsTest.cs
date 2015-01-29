@@ -9,11 +9,10 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Golem.Tests.HPNN
 {
-    [TestFixture]
+    [TestFixture, Parallelizable]
     public class MyFeedsTest : WebDriverTestBase
     {
-        [Parallelizable]
-        [Test, Category("My Feeds")]
+        [Test,Parallelizable, Category("My Feeds")]
         [Timeout(300)]
         public void SelectFeed()
         {
@@ -31,8 +30,7 @@ namespace Golem.Tests.HPNN
                 .personalNews
                 .VerifyFeedItemPresent("CNN");
         }
-        [Parallelizable]
-        [Test, Category("My Feeds")]
+        [Test,Parallelizable, Category("My Feeds")]
         [Timeout(300)]
         [DependsOn("SelectFeed")]
         public void DeselectFeed()
@@ -50,7 +48,7 @@ namespace Golem.Tests.HPNN
                 .VerifyFeedItemNotPresent("CNN");
         }
 
-        [Test, Category("My Feeds")]
+        [Test,Parallelizable, Category("My Feeds")]
         [Row("http://invalidFeed.rss")]
         [Row("http://thegrio.com/")]
         [Row("http://www.cnn.com/services/rss")]

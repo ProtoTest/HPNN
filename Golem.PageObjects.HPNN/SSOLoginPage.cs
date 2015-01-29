@@ -13,17 +13,18 @@ namespace Golem.PageObjects.HPNN
         public Element Username = new Element("Username", By.Id("username"));
         public Element Password = new Element("Password", By.Id("password"));
         public Element LogOnButton = new Element("LogOnButton", By.ClassName("btn-primary"));
-
+        public Element SsoDropdown = new Element(By.Name("pfidpadapterid"));
 
         public DashboardPage LoginAs(string username, string password)
         {
-            //slowing this down as it appears to fail periodically
-            Config.Settings.runTimeSettings.CommandDelayMs = 200;
-            ContinueButton.Click();
-            Username.SetText(username);
-            Password.SetText(password);
-            LogOnButton.Click();
-            Config.Settings.runTimeSettings.CommandDelayMs = 0;
+            SsoDropdown.WaitUntil().Visible().SelectOption("Email and Computer password");
+            ContinueButton.WaitUntil().Visible().Click();
+            //driver.Sleep(1000);
+            Username.WaitUntil().Visible().SetText(username);
+            //driver.Sleep(1000);
+            Password.WaitUntil().Visible().SetText(password);
+            //driver.Sleep(1000);
+            LogOnButton.WaitUntil().Visible().Click();
             return new DashboardPage();
         }
 

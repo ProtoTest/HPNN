@@ -32,8 +32,8 @@ namespace Golem.PageObjects.HPNN.Tiles
         public override void WaitForElements()
         {
             Container.FindElement(TileTitle).Verify().Text("Your Personal News");
-            Container.FindElement(MyFeedsButton).Verify().Visible();
-            Container.FindElement(RefreshButton).Verify().Visible();
+            Container.FindElement(MyFeedsButton).Verify().Present();
+            Container.FindElement(RefreshButton).Verify().Present();
         }
     }
 }

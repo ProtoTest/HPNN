@@ -13,12 +13,13 @@ using Gallio.Framework;
 
 namespace Golem.Tests.HPNN
 {
-    [TestFixture]
+    [TestFixture,Parallelizable]
     public class SmokeTest : WebDriverTestBase
     {
         string env = Config.GetConfigValue("EnvUrl", "http://staging.hpnn.hp.com");
-        
-        [Test, Category("Smoke Test")]
+        string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
+        string password = Config.GetConfigValue("AdminPassword", "Sanders76");
+        [Test,Parallelizable, Category("Smoke Test")]
         public void Global_Admin_Default_Tiles()
         {
             Type[] types =
@@ -28,17 +29,16 @@ namespace Golem.Tests.HPNN
                 ,typeof(InnovationShowcase),typeof(Trending),typeof(MegOnLinkedIn),typeof(KeyDates)
             };
             string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
-            string password = Config.GetConfigValue("SalesPassword", "Sanders76");
-            KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
-                .LoginAsProducer(username, password)
-                .OpenDashoard(Config.Settings.runTimeSettings.EnvironmentUrl)
+            string password = Config.GetConfigValue("AdminPassword", "Sanders76");
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAs(username, password)
                 .VerifyTiles(types);
 
 
         }
 
 
-        [Test, Category("Smoke Test")]
+        [Test,Parallelizable, Category("Smoke Test")]
         public void Sales_User_Default_Tiles()
         {
            Type[] types =
@@ -54,7 +54,7 @@ namespace Golem.Tests.HPNN
            
         }
 
-        [Test, Category("Smoke Test")]
+        [Test,Parallelizable, Category("Smoke Test")]
         public void General_User_Default_Tiles()
         {
             Type[] types =

@@ -39,8 +39,7 @@ namespace Golem.Tests.HPNN
             Config.Settings.runTimeSettings.DegreeOfParallelism = 1;
         }
 
-        [Parallelizable]
-        [Test, Category("Smoke Test")]
+        [Test,Parallelizable, Category("Smoke Test")]
         [Timeout(300)]
         [Row(WebDriverBrowser.Browser.IE,"8","Windows 7")]
         [Row(WebDriverBrowser.Browser.IE, "9", "Windows 7")]
@@ -56,8 +55,7 @@ namespace Golem.Tests.HPNN
                 .RedirectToBrowserNotSupportedPage();
         }
 
-        [Parallelizable]
-        [Test, Category("Smoke Test")]
+        [Test,Parallelizable, Category("Smoke Test")]
         [Timeout(300)]
         [Row(WebDriverBrowser.Browser.Firefox, "", "Windows 7")]
         [Row(WebDriverBrowser.Browser.Chrome, "", "Windows 8")]
@@ -75,11 +73,5 @@ namespace Golem.Tests.HPNN
                 .WaitForLoadingAnimationToVanish();
         }
 
-        [TearDown]
-        public override void TearDownTestBase()
-        {
-            driver.Quit();
-            base.TearDownTestBase();
-        }
     }
 }

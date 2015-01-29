@@ -19,8 +19,8 @@ namespace Golem.PageObjects.HPNN.Tiles
         public override void WaitForElements()
         {
             Container.FindElement(TileTitle).Verify().Text("Stock");
-            Container.FindElement(StockName).Verify().Visible();
-            Container.FindElement(UpdatedTime).Verify().Visible();
+            Container.FindElement(StockName).Verify().Present();
+            Container.FindElement(UpdatedTime).Verify().Present();
         }
     }
 }

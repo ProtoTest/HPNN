@@ -16,9 +16,12 @@ namespace Golem.PageObjects.HPNN
         public Element NextButton = new Element("NextButton", By.ClassName("introjs-nextbutton"));
         public Element StepCountLabel = new Element("StepCountLabel",By.ClassName("intro-js-step-count"));
         public Element ExitButton = new Element("ExitButton",By.LinkText("Exit"));
-        public Element TutorialVideosButton = new Element("TutorialVideosButton",By.PartialLinkText("Tutorial Videos"));
+        public Element TutorialVideosButton = new Element("TutorialVideosButton",By.Id("videoLink"));
         public Element DoneButton = new Element("DoneButton",By.LinkText("Done"));
-
+        public Element StepOne = new Element(By.Id("overlayContentStep1"));
+        public Element StepTwo = new Element(By.Id("overlayContentStep2"));
+        public Element StepThree = new Element(By.Id("overlayContentStep3"));
+        
         public TutorialOverview VerifyStepCount(string num)
         {
             StepCountLabel.Verify().Text(num);
@@ -52,10 +55,28 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage CloseTutorial()
         {
-            NextButton.WaitUntil(30).Visible().Click();
-            NextButton.WaitUntil(30).Visible().Click();
-            ExitButton.Click();
+            StepOne.WaitUntil(30).Visible().Click();
+            StepTwo.WaitUntil(30).Visible().Click();
+            StepThree.WaitUntil(30).Visible().Click();
             return new DashboardPage();
+        }
+
+        public TutorialOverview ClickStepOne()
+        {
+            StepOne.Click();
+            return this;
+        }
+
+        public TutorialOverview ClickStepTwo()
+        {
+            StepTwo.Click();
+            return this;
+        }
+
+        public AboutHPNNPage ClickVideoLink()
+        {
+            TutorialVideosButton.Click();
+            return new AboutHPNNPage();
         }
 
         public DashboardPage VerifyTutorialNotVisible()

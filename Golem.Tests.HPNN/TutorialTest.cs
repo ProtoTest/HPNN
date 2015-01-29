@@ -13,7 +13,9 @@ namespace Golem.Tests.HPNN
  //   [Parallelizable]
     class TutorialTest : WebDriverTestBase
     {
-        [Test]
+        string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
+        string password = Config.GetConfigValue("AdminPassword", "Sanders76");
+        [Test,Parallelizable]
      //   [Parallelizable]
         public void TestTUtorialSteps()
         {
@@ -31,17 +33,13 @@ namespace Golem.Tests.HPNN
         }
 
 
-        [Test]
+        [Test,Parallelizable]
         //   [Parallelizable]
         public void TestReplayTutorial()
         {
           //  Config.Settings.runTimeSettings.HighlightFoundElements = false;
 
-            string username = Config.GetConfigValue("SalesEmail", "7@hp.com");
-            string password = Config.GetConfigValue("SalesPassword", "asdf");
-            KenticoLoginPage.OpenKenticoLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
-                .LoginAs(username, password)
-                .CloseTutorial()
+           SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
                 .VerifyTutorialNotVisible()
                 .EnterSettings()
                 .ReplayTutorial()
@@ -49,5 +47,20 @@ namespace Golem.Tests.HPNN
                 .VerifyTutorialNotVisible();
         }
 
+        [Test, Parallelizable]
+        //   [Parallelizable]
+        public void TestTutorialVideoLink()
+        {
+            //  Config.Settings.runTimeSettings.HighlightFoundElements = false;
+
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username, password)
+                .VerifyTutorialNotVisible()
+                .EnterSettings()
+                .ReplayTutorial()
+                .ClickStepOne()
+                .ClickStepTwo()
+                .ClickVideoLink()
+                .VerifyPageUrl();
+        }
     }
 }
