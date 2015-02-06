@@ -24,7 +24,7 @@ namespace Golem.Tests.HPNN
         {
             string weather_tile_title = "Local Weather";
             string weather_tile_title_short = "Weather";
-            string weather_location = "Denver, CO, United States";
+            string weather_location = "Denver";
             SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
                 .LoginAs(username,password)
                 .RemoveTileIfPresent("Weather")
@@ -51,19 +51,19 @@ namespace Golem.Tests.HPNN
                 .VerifyTile(typeof(Stock));
         }
 
-        [Test,Parallelizable]
-        [Row(2, 1)]
-        public void Verify_MyComp_Tile(int x, int y)
-        {
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
-                .RemoveTileIfPresent("MyComp")
-                .EnterSettings()
-                .Enter_Tiles()
-                .AddTileWithType("MyComp", String.Format("{0}x{1}", x, y))
-                .ClickDone()
-                .VerifyTileSize("MyComp", x, y)
-                .VerifyTile(typeof (MyComp));
-        }
+        //[Test,Parallelizable]
+        //[Row(2, 1)]
+        //public void Verify_MyComp_Tile(int x, int y)
+        //{
+        //    SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+        //        .RemoveTileIfPresent("MyComp")
+        //        .EnterSettings()
+        //        .Enter_Tiles()
+        //        .AddTileWithType("MyComp", String.Format("{0}x{1}", x, y))
+        //        .ClickDone()
+        //        .VerifyTileSize("MyComp", x, y)
+        //        .VerifyTile(typeof (MyComp));
+        //}
 
         [Test,Parallelizable]
         [Row(2, 1)]
@@ -103,7 +103,8 @@ namespace Golem.Tests.HPNN
         public void Verify_MostRead_Tile(int x, int y)
         {
             String tile_under_test = "Most Read";
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password).RemoveTileIfPresent("Most Read")
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+                .RemoveTileIfPresent("Most Read")
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
@@ -118,7 +119,8 @@ namespace Golem.Tests.HPNN
         [Row(2, 3)]
         public void Verify_MostShared_Tile(int x, int y)
         {
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password).RemoveTileIfPresent("Most Shared")
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+                .RemoveTileIfPresent("Most Shared")
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType("Most Shared", String.Format("{0}x{1}", x, y))
@@ -132,7 +134,8 @@ namespace Golem.Tests.HPNN
         [Row(2, 3)]
         public void Verify_MostDiscussed_Tile(int x, int y)
         {
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password).RemoveTileIfPresent("Most Discussed")
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+                .RemoveTileIfPresent("Most Discussed")
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType("Most Discussed", String.Format("{0}x{1}", x, y))
@@ -147,7 +150,8 @@ namespace Golem.Tests.HPNN
         [Row(2, 3)]
         public void Verify_MostLiked_Tile(int x, int y)
         {
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password).RemoveTileIfPresent("Most Liked")
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+                .RemoveTileIfPresent("Most Liked")
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType("Most Liked", String.Format("{0}x{1}", x, y))
@@ -161,10 +165,11 @@ namespace Golem.Tests.HPNN
         public void Verify_Trending_Tile(int x, int y)
         {
             Config.Settings.runTimeSettings.HighlightFoundElements = true;
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password).RemoveTileIfPresent("Trending Today")
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+                .RemoveTileIfPresent("Trending Today")
                 .EnterSettings()
                 .Enter_Tiles()
-                .AddTileWithType("Trending Today", String.Format("{0}x{1}", x, y))
+                .AddTileWithType("Trending", String.Format("{0}x{1}", x, y))
                 .ClickDone()
                 .VerifyTileSize("Trending Today", x, y)
                 .VerifyTile(typeof(Trending));
@@ -176,7 +181,8 @@ namespace Golem.Tests.HPNN
         [Row(2, 1)]
         public void Verify_InnovationShowcase_Tile(int x, int y)
         {
-            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password).RemoveTileIfPresent("Showcase")
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password)
+                .RemoveTileIfPresent("Showcase")
                 .EnterSettings()
                 .Enter_Tiles()
                 .AddTileWithType("Showcase", String.Format("{0}x{1}", x, y))
@@ -241,32 +247,20 @@ namespace Golem.Tests.HPNN
         //       .ClickDone().VerifyTileNotPresent(tile_under_test);
         //}
 
-        //[Test,Parallelizable]
-        //[Row(2, 1)]
-        //public void Verify_DiscussedOnOneHP_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Discussed on OneHP";
-        //    DashboardPage dashboard_page = SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password);
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
+        [Test,Parallelizable]
+        [Row(2, 1)]
+        public void Verify_DiscussedOnOneHP_Tile(int x, int y)
+        {
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAs(username,password)
+                .RemoveTileIfPresent("Discussed on OneHP")
+                .EnterSettings()
+                .Enter_Tiles()
+                .AddTileWithType("Discussed on OneHP", String.Format("{0}x{1}", x, y))
+                .ClickDone()
+                .VerifyTileSize("Discussed on OneHP", x, y)
+                .VerifyTile(typeof(DicussedOnOneHP));
+        }
 
         //[Test,Parallelizable]
         //[Row(1, 1)]
@@ -382,34 +376,6 @@ namespace Golem.Tests.HPNN
         //}
 
         //[Test,Parallelizable]
-        //[Row(2, 1)]
-        //[Row(1, 2)]
-        //public void Verify_InnovationAtHP_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Innovation @HP";
-        //    DashboardPage dashboard_page = SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password);
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test,Parallelizable]
         //[Row(1, 1)]
         //[Row(2, 2)]
         //public void Verify_Traffic_Tile(int x, int y)
@@ -437,88 +403,59 @@ namespace Golem.Tests.HPNN
         //       .ClickDone().VerifyTileNotPresent(tile_under_test);
         //}
 
-        //[Test,Parallelizable]
-        //[Row(2, 1)]
-        //[Row(2, 2)]
-        //public void Verify_AccountNews_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Account News";
-        //    DashboardPage dashboard_page = SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password);
+        [Test, Parallelizable]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_AccountNews_Tile(int x, int y)
+        {
+            String tile_under_test = "Account News";
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAs(username, password)
+                 .RemoveTileIfPresent(tile_under_test)
+                 .EnterSettings()
+                 .Enter_Tiles()
+                 .AddAccountNews(String.Format("{0}x{1}", x, y))
+                 .RemoveNameIfPresent("JOHNSON")
+                 .EnterName("JOHNSON CONTROLS INC")
+                 .Done()
+                 .VerifyTileSize(tile_under_test, x, y)
+                 .VerifyTile(typeof(AccountNews));
+        }
 
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
+        [Test, Parallelizable]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_AccountCompetitorNews_Tile(int x, int y)
+        {
+            String tile_under_test = "Account Competitor News";
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAs(username, password)
+                 .RemoveTileIfPresent(tile_under_test)
+                 .EnterSettings()
+                 .Enter_Tiles()
+                 .AddAccountCompetitorTile(String.Format("{0}x{1}", x, y))
+                 .RemoveNameIfPresent("JOHNSON")
+                 .EnterName("JOHNSON CONTROLS INC")
+                 .Done()
+                 .VerifyTileSize(tile_under_test, x, y)
+                 .VerifyTile(typeof(AccountCompetitorNews));
+        }
 
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test,Parallelizable]
-        //[Row(2, 1)]
-        //[Row(2, 2)]
-        //public void Verify_AccountCompetitorNews_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "Account Competitor News";
-        //    DashboardPage dashboard_page = SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password);
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
-
-        //[Test,Parallelizable]
-        //[Row(2, 2)]
-        //public void Verify_HPSalesNow_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "HP Sales Now";
-        //    DashboardPage dashboard_page = SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password);
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
+        [Test, Parallelizable]
+        [Row(2, 2)]
+        public void Verify_HPSalesNow_Tile(int x, int y)
+        {
+            String tile_under_test = "HP Sales Now";
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                .LoginAs(username, password)
+                 .RemoveTileIfPresent(tile_under_test)
+                 .EnterSettings()
+                 .Enter_Tiles()
+                 .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+                 .ClickDone()
+                 .VerifyTileSize(tile_under_test, x, y)
+                 .VerifyTile(typeof(HPSalesNow));
+        }
 
         //[Test,Parallelizable]
         //[Row(1, 1)]
@@ -712,32 +649,21 @@ namespace Golem.Tests.HPNN
         //       .ClickDone().VerifyTileNotPresent(tile_under_test);
         //}
 
-        //[Test,Parallelizable]
-        //[Row(1, 1)]
-        //[Row(1, 2)]
-        //public void Verify_HP_University_LandD_Tile(int x, int y)
-        //{
-        //    String tile_under_test = "L&D";
-        //    DashboardPage dashboard_page = SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl).LoginAs(username,password);
-
-        //    List<string> tile_list = dashboard_page.GetAllTileTitles();
-
-        //    // Remove the tile if it is already on the dashboard
-        //    if (tile_list.Contains(tile_under_test))
-        //    {
-        //        dashboard_page = dashboard_page.EnterSettings().sidebar.RearrangeTiles()
-        //        .RemoveTile(tile_under_test)
-        //        .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //    }
-
-        //    dashboard_page.EnterSettings()
-        //       .Enter_Tiles()
-        //       .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
-        //       .ClickDone()
-        //       .VerifyTileSize(tile_under_test, x, y)
-        //       .EnterSettings().sidebar.RearrangeTiles()
-        //       .RemoveTile(tile_under_test)
-        //       .ClickDone().VerifyTileNotPresent(tile_under_test);
-        //}
+        [Test, Parallelizable]
+        [Row(2, 1)]
+        [Row(2, 2)]
+        public void Verify_HP_University_Tile(int x, int y)
+        {
+            String tile_under_test = "HP University";
+            SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
+                     .LoginAs(username, password)
+                      .RemoveTileIfPresent(tile_under_test)
+                      .EnterSettings()
+                      .Enter_Tiles()
+                      .AddTileWithType(tile_under_test, String.Format("{0}x{1}", x, y))
+                      .ClickDone()
+                      .VerifyTileSize(tile_under_test, x, y)
+                      .VerifyTile(typeof(HPUniversity));
+        }
     }
 }

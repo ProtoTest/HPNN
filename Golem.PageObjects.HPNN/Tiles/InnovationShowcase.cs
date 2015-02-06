@@ -21,7 +21,10 @@ namespace Golem.PageObjects.HPNN.Tiles
         {
             Container.FindElement(TileTitle).Verify().Text("Innovation Showcase");
             Container.FindElement(Image).Verify().Present();
-            Container.FindElement(Text).Verify().Present();
+           // if(this.x > 1 || y > 1)
+                Container.FindElement(Text).Verify().Present();
         }
+
+     
     }
 }

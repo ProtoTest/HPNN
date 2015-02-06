@@ -25,7 +25,8 @@ namespace Golem.Tests.HPNN
                 .EnterSettings()
                 .Enter_NewsFeeds()
                 .ClearAllFeeds()
-                .AddFeed("CNN")
+                .SelectFeed("CNN")
+                .VerifyFeedSelected("CNN")
                 .ClickDone();
         }
 

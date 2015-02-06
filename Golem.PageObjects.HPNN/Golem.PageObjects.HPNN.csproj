@@ -98,6 +98,7 @@
     <Compile Include="Header.cs" />
     <Compile Include="KenticoLoginPage.cs" />
     <Compile Include="LoadingPanel.cs" />
+    <Compile Include="PersonalizeAccountNews.cs" />
     <Compile Include="PersonalizeWeatherPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RearrangeTilesBanner.cs" />

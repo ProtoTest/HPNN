@@ -19,14 +19,19 @@ namespace Golem.PageObjects.HPNN
         public Element location_field = new Element("Weather Location Field", By.Id("select-location"));
         public Radio temp_type_radio = new Radio("Weather temp type radio", By.XPath("//input[@type='radio']"));
         public Element RemoveButton = new Element(By.LinkText("Remove"));
+        public Element RemoveButtonForLocation = new Element(By.XPath("//li[contains(@title,'{0}')]//a"));
         public Element FarhenheitRadio = new Element(By.XPath("//input[@value='imperial']"));
         public Element CelciusRadio = new Element(By.XPath("//input[@value='metric']"));
+        public Element AutocompletePanel = new Element(By.ClassName("pac-container"));
 
         public PersonalizeWeatherPage EnterLocation(string location)
         {
-            if (RemoveButton.Displayed)
+            if (RemoveButtonForLocation.WithParam(location).Displayed)
                 RemoveButton.WaitUntil().Visible().Click();
+            if(!location_field.Displayed)
+                RemoveButton.Click();
             location_field.WaitUntil().Visible().SendKeys(location);
+            AutocompletePanel.WaitUntil().Visible();
             location_field.WaitUntil().Visible().SendKeys(Keys.Down + Keys.Enter);
             AddButton.WaitUntil().Visible().Click();
             return this;
@@ -34,7 +39,7 @@ namespace Golem.PageObjects.HPNN
 
         public EditDashboardPage Done()
         {
-            done_add_tile_btn.WaitUntil().Visible().Click();
+            DoneButton.WaitUntil().Visible().Click();
             return new EditDashboardPage();
         }
 
@@ -46,13 +51,13 @@ namespace Golem.PageObjects.HPNN
 
         public EditDashboardPage ClickAddMyTile()
         {
-            done_add_tile_btn.WaitUntil().Visible().Click();
+            DoneButton.WaitUntil().Visible().Click();
             return new EditDashboardPage();
         }
 
         public MyTiles ClickBack()
         {
-            back_btn.Click();
+            BackButton.Click();
             return new MyTiles();
         }
 

@@ -1,4 +1,5 @@
 ﻿
+using System.Runtime.CompilerServices;
 using System.Threading;
 using OpenQA.Selenium;
 using ProtoTest.Golem.Core;
@@ -8,6 +9,7 @@ namespace Golem.PageObjects.HPNN
 {
     public class SSOLoginPage : BasePageObject
     {
+        public static string url = "";
 
         public Element ContinueButton = new Element(By.ClassName("btn-primary"));
         public Element Username = new Element("Username", By.Id("username"));
@@ -19,12 +21,17 @@ namespace Golem.PageObjects.HPNN
         {
             SsoDropdown.WaitUntil().Visible().SelectOption("Email and Computer password");
             ContinueButton.WaitUntil().Visible().Click();
-            //driver.Sleep(1000);
             Username.WaitUntil().Visible().SetText(username);
-            //driver.Sleep(1000);
             Password.WaitUntil().Visible().SetText(password);
-            //driver.Sleep(1000);
             LogOnButton.WaitUntil().Visible().Click();
+            Password.timeoutSec = 3;
+            for  (var i=0; i<5 && Password.Displayed ;i++)
+            {
+                driver.Sleep(1000);
+                Password.SetText(password);
+                driver.Sleep(1000);
+                LogOnButton.Click();
+            }
             return new DashboardPage();
         }
 
@@ -32,6 +39,7 @@ namespace Golem.PageObjects.HPNN
 
         public static SSOLoginPage OpenSSOLoginPage(string env)
         {
+            SSOLoginPage.url = env;
             WebDriverTestBase.driver.Navigate().GoToUrl(env);
             if(WebDriverTestBase.testData.browserInfo.browser == WebDriverBrowser.Browser.IE)
                 WebDriverTestBase.driver.Navigate().GoToUrl(env);

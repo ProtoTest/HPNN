@@ -15,29 +15,29 @@ namespace Golem.PageObjects.HPNN
     public class BasePersonalizeTile : BasePageObject
     {
         public Sidebar sidebar = new Sidebar();
-        public Element page_title = new Element("Personalize Tile Title", ByE.Text("Personalize Your Tile"));
-        public Button back_btn = new Button("Back Button", By.LinkText("Back"));
-        public Button done_add_tile_btn = new Button("DoneButton", By.PartialLinkText("Done"));
+        public Element PageTitle = new Element("Personalize Tile Title", ByE.Text("Personalize Your Tile"));
+        public Button BackButton = new Button("Back Button", By.LinkText("Back"));
+        public Button DoneButton = new Button("DoneButton", By.PartialLinkText("Done"));
         public Element AddButton = new Element("AddButton",By.LinkText("Add"));
-
+        public Element RemoveButton = new Element(By.LinkText("Remove"));
 
         public EditDashboardPage ClickAddMyTile()
         {
-            done_add_tile_btn.Click();
+            DoneButton.Click();
             return new EditDashboardPage();
         }
 
         public MyTiles ClickBack()
         {
-            back_btn.Click();
+            BackButton.Click();
             return new MyTiles();
         }
 
         public override void WaitForElements()
         {
-            page_title.Verify().Visible();
-            back_btn.Verify().Visible();
-            done_add_tile_btn.Verify().Visible();
+            PageTitle.Verify().Visible();
+            BackButton.Verify().Visible();
+            DoneButton.Verify().Visible();
         }
     }
 }

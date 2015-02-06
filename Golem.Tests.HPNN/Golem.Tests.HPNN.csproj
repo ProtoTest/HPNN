@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountNewsTileTests.cs" />
     <Compile Include="BrowserPageTest.cs" />
     <Compile Include="SaveSettings.cs" />
     <Compile Include="MyFeedsTest.cs" />

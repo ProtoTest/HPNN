@@ -17,7 +17,7 @@ namespace Golem.PageObjects.HPNN.Tiles
         public override void WaitForElements()
         {
             Container.FindElement(Link).Verify().Present();
-            Container.FindElement(paginationLinks).Verify().Present();
+           // Container.FindElement(paginationLinks).Verify().Present();
         }
 
     }

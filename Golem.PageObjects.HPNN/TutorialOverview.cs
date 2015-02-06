@@ -63,19 +63,20 @@ namespace Golem.PageObjects.HPNN
 
         public TutorialOverview ClickStepOne()
         {
-            StepOne.Click();
+            StepOne.WaitUntil().Visible().Click();
             return this;
         }
 
         public TutorialOverview ClickStepTwo()
         {
-            StepTwo.Click();
+            StepTwo.WaitUntil().Visible().Click();
             return this;
         }
 
         public AboutHPNNPage ClickVideoLink()
         {
-            TutorialVideosButton.Click();
+            driver.Sleep(5000);
+            TutorialVideosButton.WaitUntil().Visible().Click();
             return new AboutHPNNPage();
         }
 

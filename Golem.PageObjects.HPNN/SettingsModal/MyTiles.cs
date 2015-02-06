@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Golem.PageObjects.HPNN.Tiles;
 using OpenQA.Selenium;
 using ProtoTest.Golem.WebDriver;
 
@@ -116,6 +117,23 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             doneButton.Click();
             return new EditDashboardPage();
         }
+
+        public PersonalizeAccountNews AddAccountCompetitorTile(string size)
+        {
+            ButtonForTileType.WithParam("Account Competitor News").WaitUntil().Visible().Click();
+            ButtonForSize.WithParam(size).WaitUntil().Visible().Click();
+ 
+            return new PersonalizeAccountNews();
+        }
+
+        public PersonalizeAccountNews AddAccountNews(string size)
+        {
+            ButtonForTileType.WithParam("Account News").WaitUntil().Visible().Click();
+            ButtonForSize.WithParam(size).WaitUntil().Visible().Click();
+
+            return new PersonalizeAccountNews();
+        }
+
 
         public override void WaitForElements()
         {

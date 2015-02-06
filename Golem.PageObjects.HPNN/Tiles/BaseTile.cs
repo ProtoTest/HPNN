@@ -14,6 +14,14 @@ namespace Golem.PageObjects.HPNN.Tiles
         public Element RootElement;
         public By Title = By.ClassName("tile-title");
         public By Body = By.ClassName("tile-body");
+        protected int x = 1;
+        protected int y = 1;
+
+        public BaseTile(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
 
         public override void WaitForElements()
         {

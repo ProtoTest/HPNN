@@ -169,6 +169,19 @@ namespace Golem.PageObjects.HPNN
             return this;
         }
 
+        public T Tile<T>()
+        {
+            try
+            {
+                return (T) Activator.CreateInstance(typeof (T));
+            }
+            catch (Exception e)
+            {
+                throw e.InnerException;
+            }
+            
+        }
+
         public DashboardPage VerifyTile(Type type)
         {
             try
@@ -191,6 +204,7 @@ namespace Golem.PageObjects.HPNN
         public DashboardPage RemoveTileIfPresent(string title)
         {
             var tile = TileWithTitle(title);
+            tile.timeoutSec = 5;
             if (tile.Present)
                 return EnterSettings().Enter_Tiles().Personalize().RemoveTile(title).ClickDone();
             return this;

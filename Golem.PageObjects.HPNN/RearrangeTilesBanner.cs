@@ -24,6 +24,7 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage ClickDone()
         {
+            driver.Sleep(1000);
             buttonDone.WaitUntil().Visible().Click();
             return new DashboardPage();
         }
