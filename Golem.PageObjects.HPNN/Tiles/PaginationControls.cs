@@ -10,7 +10,7 @@ namespace Golem.PageObjects.HPNN.Tiles
 {
     public class PaginationControls : BasePageObject
     {
-        public Element ControlContainer = new Element(By.ClassName("standard-carousel-pager-controls"));
+        public Element PaginationContainer = new Element(By.ClassName("standard-carousel-pager-controls"));
         public Element PageLink = new Element(By.LinkText("{0}"));
         public Element PageOneLink = new Element(By.LinkText("1"));
         public Element PageTwoLink = new Element(By.LinkText("2"));
@@ -21,16 +21,16 @@ namespace Golem.PageObjects.HPNN.Tiles
         private Element Container;
         private int numOfPages;
 
-        public PaginationControls(Element container, int numOfPages)
+        public PaginationControls(By container, int numOfPages)
         {
-            this.Container = container;
+            this.Container = new Element(container);
             this.numOfPages = numOfPages;
         }
 
 
         public override void WaitForElements()
         {
-            Container.FindElement(ControlContainer).Verify().Visible();
+            Container.FindElement(PaginationContainer).Verify().Visible();
             Container.FindElement(PageLink.WithParam("1")).Verify().Visible();
             Container.FindElement(PageLink.WithParam(numOfPages.ToString())).Verify().Visible();
 

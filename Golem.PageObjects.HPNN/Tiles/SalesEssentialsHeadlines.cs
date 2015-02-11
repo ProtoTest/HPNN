@@ -22,11 +22,6 @@ namespace Golem.PageObjects.HPNN.Tiles
             Container.FindElement(DateLabel).Verify().Visible();
             Container.FindElement(Image).Verify().Present();
             Container.FindElement(Link).Verify().Present();
-            //Container.FindElement(PaginationControlContainer).Verify().Present();
-            //Container.FindElement(PageOneLink).Verify().Present();
-            //Container.FindElement(PageTwoLink).Verify().Present();
-            //Container.FindElement(PageThreeLink).Verify().Present();
-            //Container.FindElement(PageFourLink).Verify().Present();
         }
     }
 }

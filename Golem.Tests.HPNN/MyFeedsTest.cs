@@ -18,6 +18,7 @@ namespace Golem.Tests.HPNN
         {
             string username = Config.GetConfigValue("AdminEmail", "chris.bower@hp.com");
             string password = Config.GetConfigValue("AdminPassword", "Sanders76");
+            
             SSOLoginPage.OpenSSOLoginPage(Config.Settings.runTimeSettings.EnvironmentUrl)
                 .LoginAs(username, password)
                 .WaitForLoadingAnimationToVanish()

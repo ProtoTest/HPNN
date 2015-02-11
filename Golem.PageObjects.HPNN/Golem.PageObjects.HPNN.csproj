@@ -64,7 +64,7 @@
     </Reference>
     <Reference Include="ProtoTest.Golem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ProtoTest.Golem.1.2.3.6\lib\net40\ProtoTest.Golem.dll</HintPath>
+      <HintPath>..\packages\ProtoTest.Golem.1.2.4.0\lib\net40\ProtoTest.Golem.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -125,6 +125,7 @@
     <Compile Include="Tiles\MostRead.cs" />
     <Compile Include="Tiles\MostShared.cs" />
     <Compile Include="Tiles\PaginationControls.cs" />
+    <Compile Include="Tiles\InnovationAtHPLabsBlog.cs" />
     <Compile Include="Tiles\SalesEssentialsHeadlines.cs" />
     <Compile Include="Tiles\SalesQuickLinks.cs" />
     <Compile Include="Tiles\Stock.cs" />
@@ -142,9 +143,7 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Proxy\browsermob-proxy-2.0-beta-8-bin.zip" />
     <None Include="packages.config" />
-    <None Include="Proxy\browsermob-proxy-2.0-beta-9-bin.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Proxy\browsermob-proxy-2.0-beta-9-bin.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />

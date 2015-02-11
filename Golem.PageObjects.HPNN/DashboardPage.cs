@@ -43,7 +43,12 @@ namespace Golem.PageObjects.HPNN
         {
             Element dropdown = new Element(By.XPath("//div[@gridster-item='tile' and .//h2[contains(text(),'" + title + "')]]//div[contains(@class, 'dropdown')]/a"));
             dropdown.Click();
-            return new Element(By.LinkText("DELETE")).GetVisibleElement();
+            var delete = new Element(By.LinkText("DELETE"));
+            for (var i = 0; i < 5 && !delete.IsDisplayed(5); i++)
+            {
+                dropdown.Click();
+            }
+            return delete.GetVisibleElement();
         }
 
         public IReadOnlyCollection<IWebElement> AllTilesOnPage()
@@ -204,8 +209,7 @@ namespace Golem.PageObjects.HPNN
         public DashboardPage RemoveTileIfPresent(string title)
         {
             var tile = TileWithTitle(title);
-            tile.timeoutSec = 5;
-            if (tile.Present)
+            if (tile.IsPresent(5))
                 return EnterSettings().Enter_Tiles().Personalize().RemoveTile(title).ClickDone();
             return this;
         }

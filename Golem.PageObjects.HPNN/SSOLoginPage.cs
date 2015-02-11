@@ -19,6 +19,7 @@ namespace Golem.PageObjects.HPNN
 
         public DashboardPage LoginAs(string username, string password)
         {
+            
             SsoDropdown.WaitUntil().Visible().SelectOption("Email and Computer password");
             ContinueButton.WaitUntil().Visible().Click();
             Username.WaitUntil().Visible().SetText(username);

@@ -14,6 +14,7 @@ namespace Golem.PageObjects.HPNN.Tiles
         public Element TileTitle = new Element(By.ClassName("tile-title"));
         public Element Link = new Element(By.ClassName("tile-text"));
         public Element Image = new Element(By.ClassName("tile-image"));
+
        // public PaginationControls PaginationControls;
 
         public override void WaitForElements()

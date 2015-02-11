@@ -27,7 +27,6 @@ namespace Golem.PageObjects.HPNN.SettingsModal
 
         public EditDashboardPage AddTileWithType(string type, string size)
         {
-            // Specific id for 'In The News' tile needs to be customized
             if(type.Equals("In The News"))
             {
                 type = "News";
@@ -68,7 +67,7 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             {
                 type = "Upcoming Events for Sales";
             }
-            else if (type.Equals("Innovation @HP"))
+            else if (type.Equals("Innovation @HP Labs Blog"))
             {
                 type = "hp-innovation-blog";
             }
@@ -76,7 +75,7 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             {
                 type = "quick-links";
             }
-            else if (type.Equals("Quick Links for Sales"))
+            else if (type.Equals("Sales Quick Links"))
             {
                 type = "quick-link-for-sales";
             }
@@ -88,8 +87,18 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             {
                 type = "icon-innovation-showcase";
             }
-            
-
+            else if (type.Contains("Current FY Pipeline"))
+            {
+                type = "icon-sfdc-pipeline-forecast-by-gbu";
+            }
+            else if (type.Contains("Key Dates"))
+            {
+                type = "icon-Upcoming-events";
+            }
+            else if (type.Contains("Sales Essentials Headlines"))
+            {
+                type = "icon-Sales Essentials Headlines";
+            }
             ButtonForTileType.WithParam(type).WaitUntil().Visible().Click();
             ButtonForSize.WithParam(size).WaitUntil().Visible().Click();
             return new EditDashboardPage();
@@ -140,5 +149,13 @@ namespace Golem.PageObjects.HPNN.SettingsModal
             PageHeading_Label.Verify().Visible();
         }
 
+        public EditDashboardPage AddQuickLinksTile(string tileUnderTest, string format)
+        {
+
+            ButtonForTileType.WithParam("quick-link-for-sales").WaitUntil().Visible().Click();
+            ButtonForSize.WithParam(format).WaitUntil().Visible().Click();
+            doneButton.WaitUntil().Visible().Click();
+            return new EditDashboardPage();
+        }
     }
 }
